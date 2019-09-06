@@ -8,18 +8,13 @@ namespace OOPGameSnake
     {
         static void Main(string[] args)
         {
-            List<int> a = new List<int>();
-            a.Add(1);
-            a.Add(2);
-            a.Add(3);
+            ConsoleGraphics g = new ConsoleGraphics();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.CursorVisible = false;
+            Console.Clear();
 
-            var b = a.ToArray();
-
-            foreach (var c in b )
-            {
-                Console.WriteLine(c);
-            }
-
+            Cell a = new Cell(0, 0);
+            a.Render(g);
             Console.ReadLine();
         }
     }

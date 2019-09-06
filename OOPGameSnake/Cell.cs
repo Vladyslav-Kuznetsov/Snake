@@ -9,6 +9,7 @@ namespace OOPGameSnake
         private int _y;
         private int _size;
         private const uint _color = 0xFF000000;
+        //private const uint _color = 0xFFFFFFFF;
 
         public Cell(int x, int y, int size)
         {

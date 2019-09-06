@@ -8,13 +8,14 @@ namespace OOPGameSnake
     {
         static void Main(string[] args)
         {
+            Console.WindowHeight = 32;
+            Console.WindowWidth = 120;
             ConsoleGraphics g = new ConsoleGraphics();
             Console.BackgroundColor = ConsoleColor.White;
             Console.CursorVisible = false;
             Console.Clear();
 
-            Cell a = new Cell(0, 0);
-            a.Render(g);
+            PlayingField a = new PlayingField(500, 50);
             Console.ReadLine();
         }
     }

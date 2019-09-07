@@ -33,11 +33,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ConsoleGraphics.cs">
-      <HintPath>..\..\..\..\OneDrive\Рабочий стол\ConsoleGraphics.cs.dll</HintPath>
+    <Reference Include="ConsoleGraphics.cs, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraly\ConsoleGraphics.cs.dll</HintPath>
     </Reference>
-    <Reference Include="DataStruct">
-      <HintPath>..\..\DataStruct\DataStruct\bin\Debug\DataStruct.dll</HintPath>
+    <Reference Include="DataStruct, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Libraly\DataStruct.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

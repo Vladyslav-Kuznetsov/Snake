@@ -17,7 +17,7 @@ namespace OOPGameSnake
             _size = size;
         }
 
-        public void Render (ConsoleGraphics graphics)
+        public void Render(ConsoleGraphics graphics)
         {
             graphics.DrawRectangle(_color, _x, _y, _size, _size);
         }

@@ -8,7 +8,6 @@ namespace OOPGameSnake
     {
         private Cell[,] _field;
         private int _sizeCell;
-        private ConsoleGraphics _graphics;
         public readonly int _sizeField;
 
         public PlayingField(int sizeField, int sizeCell)
@@ -16,7 +15,6 @@ namespace OOPGameSnake
             _sizeField = sizeField;
             _sizeCell = sizeCell;
             _field = new Cell[_sizeField / _sizeCell, _sizeField / _sizeCell];
-            _graphics = new ConsoleGraphics();
             CreatePlayingField();
         }
 
@@ -34,14 +32,14 @@ namespace OOPGameSnake
             }
         }
 
-        public void DrawField()
+        public void DrawField(ConsoleGraphics graphics)
         {
             foreach(Cell c in _field)
             {
-                c.Render(_graphics);
+                c.Render(graphics);
             }
 
-            _graphics.FlipPages();
+            graphics.FlipPages();
         }
     }
 }

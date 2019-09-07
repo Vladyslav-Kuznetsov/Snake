@@ -6,6 +6,9 @@ namespace OOPGameSnake
 {
     class Program
     {
+        private static int _sizeField = 800;
+        private static int _sizeCell = 40;
+        private static int _speed = 40;
         static void Main(string[] args)
         {
             Console.WindowHeight = 60;
@@ -15,17 +18,22 @@ namespace OOPGameSnake
             Console.CursorVisible = false;
             Console.Clear();
 
-            PlayingField a = new PlayingField(800, 40);
-            Snake s = new Snake(0xFFFF0000, 800 / 2, 800 / 2, 40, 40);
+            PlayingField a = new PlayingField(_sizeField, _sizeCell);
+            Fruit f = new Fruit(_sizeField, _sizeCell);
+            Snake s = new Snake(0xFFFF0000, _sizeField / 2, _sizeField / 2, _sizeCell, _speed);
             Canvas c = new Canvas(0xFFFFFFFF, 800, 800);
 
             while (true)
             {
-                a.DrawField();
+                a.DrawField(g);
+                //f.Render(g);
                 s.Render(g);
                 s.Update(a);
                 c.Render(g);
+
             }
+
+
             Console.ReadLine();
         }
     }

@@ -1,10 +1,12 @@
 ﻿using System;
+using DataStruct;
 using NConsoleGraphics;
 
 namespace OOPGameSnake
 {
     public class Snake
     {
+        private List<Cell> _snake;
         private readonly uint _color;
         private int _x;
         private int _y;
@@ -14,6 +16,7 @@ namespace OOPGameSnake
 
         public Snake(uint color, int x, int y, int size, int speed)
         {
+            _snake = new List<Cell>();
             _color = color;
             _x = x;
             _y = y;
@@ -23,27 +26,39 @@ namespace OOPGameSnake
 
         private void Move()
         {
-            if (Input.IsKeyDown(Keys.LEFT))
-            {
-                _direction = Keys.LEFT;
 
-            }
-            else if (Input.IsKeyDown(Keys.RIGHT))
+            switch (_direction)
             {
-                _direction = Keys.RIGHT;
+                case Keys.LEFT:
+                case Keys.RIGHT:
 
-            }
-            else if (Input.IsKeyDown(Keys.UP))
-            {
-                _direction = Keys.UP;
+                    if (Input.IsKeyDown(Keys.DOWN))
+                    {
+                        _direction = Keys.DOWN;
+                    }
+                    else if (Input.IsKeyDown(Keys.UP))
+                    {
+                        _direction = Keys.UP;
+                    }
+                    break;
 
-            }
-            else if (Input.IsKeyDown(Keys.DOWN))
-            {
-                _direction = Keys.DOWN;
+                case Keys.UP:
+                case Keys.DOWN:
 
+                    if (Input.IsKeyDown(Keys.LEFT))
+                    {
+                        _direction = Keys.LEFT;
+                    }
+                    else if (Input.IsKeyDown(Keys.RIGHT))
+                    {
+                        _direction = Keys.RIGHT;
+                    }
+
+                    break;
             }
+
         }
+
         public void Update(PlayingField field)
         {
             Move();
@@ -51,22 +66,18 @@ namespace OOPGameSnake
             if (_direction == Keys.LEFT)
             {
                 _x -= _speed;
-
             }
             else if (_direction == Keys.RIGHT)
             {
                 _x += _speed;
-
             }
             else if (_direction == Keys.UP)
             {
                 _y -= _speed;
-
             }
             else if (_direction == Keys.DOWN)
             {
                 _y += _speed;
-
             }
 
             if (_x + _size > field._sizeField)
@@ -91,6 +102,7 @@ namespace OOPGameSnake
         public void Render(ConsoleGraphics graphics)
         {
             graphics.FillRectangle(_color, _x, _y, _size, _size);
+
             graphics.FlipPages();
         }
     }

@@ -18,6 +18,7 @@ namespace OOPGameSnake
             PlayingField a = new PlayingField(800, 40);
             Snake s = new Snake(0xFFFF0000, 800 / 2, 800 / 2, 40, 40);
             Canvas c = new Canvas(0xFFFFFFFF, 800, 800);
+
             while (true)
             {
                 a.DrawField();

@@ -1,6 +1,5 @@
 ﻿using System;
 using NConsoleGraphics;
-using System.Threading;
 
 namespace OOPGameSnake
 {
@@ -23,22 +22,7 @@ namespace OOPGameSnake
 
         public void Update(PlayingField field)
         {
-            if (Input.IsKeyDown(Keys.LEFT))
-            {
-                _x -= _speed;
-            }
-            else if (Input.IsKeyDown(Keys.RIGHT))
-            {
-                _x += _speed;
-            }
-            else if (Input.IsKeyDown(Keys.UP))
-            {
-                _y -= _speed;
-            }
-            else if (Input.IsKeyDown(Keys.DOWN))
-            {
-                _y += _speed;
-            }
+            _y += _speed;
 
             if (_x + _size > field._sizeField)
             {
@@ -58,6 +42,47 @@ namespace OOPGameSnake
                 _y = field._sizeField - _size;
             }
         }
+        //public void Update(PlayingField field)
+        //{
+        //    if (Input.IsKeyDown(Keys.LEFT))
+        //    {
+        //        _x -= _speed;
+
+        //    }
+        //    else if (Input.IsKeyDown(Keys.RIGHT))
+        //    {
+        //        _x += _speed;
+
+        //    }
+        //    else if (Input.IsKeyDown(Keys.UP))
+        //    {
+        //        _y -= _speed;
+
+        //    }
+        //    else if (Input.IsKeyDown(Keys.DOWN))
+        //    {
+        //        _y += _speed;
+
+        //    }
+
+        //    if (_x + _size > field._sizeField)
+        //    {
+        //        _x = 0;
+        //    }
+        //    else if (_x < 0)
+        //    {
+        //        _x = field._sizeField - _size;
+        //    }
+
+        //    if (_y + _size > field._sizeField)
+        //    {
+        //        _y = 0;
+        //    }
+        //    else if (_y < 0)
+        //    {
+        //        _y = field._sizeField - _size;
+        //    }
+        //}
 
         public void Render(ConsoleGraphics graphics)
         {

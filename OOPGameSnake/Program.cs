@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using DataStruct;
 using NConsoleGraphics;
 
@@ -8,7 +9,6 @@ namespace OOPGameSnake
     {
         private static int _sizeField = 800;
         private static int _sizeCell = 40;
-        private static int _speed = 40;
         static void Main(string[] args)
         {
             Console.WindowHeight = 60;
@@ -19,18 +19,49 @@ namespace OOPGameSnake
             Console.Clear();
 
             PlayingField a = new PlayingField(_sizeField, _sizeCell);
-            Fruit f = new Fruit(_sizeField, _sizeCell);
-            Snake s = new Snake(0xFFFF0000, _sizeField / 2, _sizeField / 2, _sizeCell, _speed);
+            FruitCreator f = new FruitCreator(_sizeField, _sizeCell);
+            Cell tail = new Cell(_sizeField / 2, _sizeField / 2, _sizeCell);
+            Snake snake = new Snake(tail, 5, _sizeField);
+            Cell fruit = f.CreateFruit(snake);
+            fruit.Render1(g);
+            
+            
+            //Snake s = new Snake(0xFFFF0000, _sizeField / 2, _sizeField / 2, _sizeCell, _speed);
             Canvas c = new Canvas(0xFFFFFFFF, 800, 800);
+            snake.DrawSnake();
+            //while (true)
+            //{
+            //    a.DrawField(g);
+            //    //f.Render(g);
+            //    //s.Update(a);
+            //    //s.Render(g);
+            //    //s.Update(a);
+            //    c.Render(g);
 
+            //}
+            a.DrawField(g);
             while (true)
             {
-                a.DrawField(g);
-                //f.Render(g);
-                s.Render(g);
-                s.Update(a);
-                c.Render(g);
-
+                if(snake.IsHitTail())
+                {
+                    break;
+                }
+                
+                if (snake.Eat(fruit))
+                {
+                    fruit.Clear(g);
+                    fruit = f.CreateFruit(snake);
+                    //c.Render(g);
+                }
+                else
+                {
+                    snake.Move();
+                }
+                
+                //a.DrawField(g);
+                snake.ВefineСlick();
+                fruit.Render1(g);
+                g.FlipPages();
             }
 
 

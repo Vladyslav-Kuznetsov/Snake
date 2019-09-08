@@ -53,7 +53,7 @@
   <ItemGroup>
     <Compile Include="Canvas.cs" />
     <Compile Include="Cell.cs" />
-    <Compile Include="Fruit.cs" />
+    <Compile Include="FruitCreator.cs" />
     <Compile Include="PlayingField.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

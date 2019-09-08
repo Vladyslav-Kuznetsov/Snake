@@ -39,7 +39,7 @@ namespace OOPGameSnake
                 c.Render(graphics);
             }
 
-            graphics.FlipPages();
+            //graphics.FlipPages();
         }
     }
 }

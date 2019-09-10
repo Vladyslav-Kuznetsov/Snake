@@ -23,26 +23,21 @@ namespace OOPGameSnake
             Cell tail = new Cell(_sizeField / 2, _sizeField / 2, _sizeCell);
             Snake snake = new Snake(tail, 5, _sizeField);
             Cell fruit = f.CreateFruit(snake);
-            fruit.Render1(g);
             
             
-            //Snake s = new Snake(0xFFFF0000, _sizeField / 2, _sizeField / 2, _sizeCell, _speed);
+            
+            
             Canvas c = new Canvas(0xFFFFFFFF, 800, 800);
             snake.DrawSnake();
-            //while (true)
-            //{
-            //    a.DrawField(g);
-            //    //f.Render(g);
-            //    //s.Update(a);
-            //    //s.Render(g);
-            //    //s.Update(a);
-            //    c.Render(g);
-
-            //}
+            
             a.DrawField(g);
             while (true)
             {
-                if(snake.IsHitTail())
+                a.DrawField(g);
+                snake.ВefineСlick();
+                fruit.Render1(g);
+
+                if (snake.IsHitTail())
                 {
                     break;
                 }
@@ -51,14 +46,14 @@ namespace OOPGameSnake
                 {
                     fruit.Clear(g);
                     fruit = f.CreateFruit(snake);
-                    //c.Render(g);
+                    
                 }
                 else
                 {
                     snake.Move();
                 }
                 
-                //a.DrawField(g);
+                
                 snake.ВefineСlick();
                 fruit.Render1(g);
                 g.FlipPages();

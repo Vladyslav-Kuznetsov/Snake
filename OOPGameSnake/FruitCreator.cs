@@ -6,8 +6,6 @@ namespace OOPGameSnake
     public class FruitCreator
     {
         private int _fieldSize;
-        //private int _x;
-        //private int _y;
         private int _size;
         private Random _random;
         public FruitCreator(int fieldSize, int size)
@@ -16,17 +14,6 @@ namespace OOPGameSnake
             _size = size;
             _random = new Random();
         }
-        //    public Fruit(int sizeField, int size)
-        //    {
-        //        CreateFruit(sizeField, size);
-        //        _size = size;
-        //    }
-
-        //    public void Render(ConsoleGraphics graphics)
-        //    {
-        //        graphics.FillRectangle(0xFFFFFF00, _x, _y, _size, _size);
-        //        graphics.FlipPages();
-        //    }
 
         public Cell CreateFruit(Snake s)
         {

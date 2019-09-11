@@ -26,7 +26,7 @@ namespace OOPGameSnake
 
                 for (int j = 0; y < _sizeField; j++)
                 {
-                    _field[i, j] = new Cell(x, y,_sizeCell);
+                    _field[i, j] = new Cell(x, y, _sizeCell);
                     y += _sizeCell;
                 }
             }
@@ -34,12 +34,10 @@ namespace OOPGameSnake
 
         public void Draw(ConsoleGraphics graphics)
         {
-            foreach(Cell c in _field)
+            foreach (Cell c in _field)
             {
                 c.Render(graphics);
             }
-
-            //graphics.FlipPages();
         }
     }
 }

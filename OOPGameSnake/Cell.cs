@@ -69,19 +69,18 @@ namespace OOPGameSnake
 
         public void Render(ConsoleGraphics graphics)
         {
-            graphics.DrawRectangle(_color, _x, _y, _size, _size);
+            graphics.DrawRectangle(_color, _x + 1, _y + 1, _size - 1, _size - 1);
         }
 
         public void Render(ConsoleGraphics graphics, uint color)
         {
-            graphics.FillRectangle(color, _x, _y, _size, _size);
-            
+            graphics.FillRectangle(color, _x + 1, _y + 1, _size - 1, _size - 1);
+
         }
 
         public void Clear(ConsoleGraphics graphics)
         {
-            graphics.FillRectangle(0xFFFFFFFF, _x, _y, _size, _size);
-            
+            graphics.FillRectangle(0xFFFF0000, _x + 1, _y + 1, _size - 1, _size - 1);
         }
     }
 }

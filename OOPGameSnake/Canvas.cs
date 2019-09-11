@@ -20,7 +20,6 @@ namespace OOPGameSnake
         public void Clear(ConsoleGraphics graphics)
         {
             graphics.FillRectangle(_color, 0, 0, _width, _height);
-            graphics.FlipPages();
         }
     }
 }

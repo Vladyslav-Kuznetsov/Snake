@@ -63,7 +63,7 @@ namespace OOPGameSnake
         {
             Cell head = GetNextCell();
 
-            for(int i = 0; i < _snake.Count;i++)
+            for (int i = 0; i < _snake.Count; i++)
             {
                 if (head.IsHit(_snake[i]))
                 {
@@ -121,16 +121,10 @@ namespace OOPGameSnake
             g.FlipPages();
         }
 
-        //private static void Clear(Cell c)
-        //{
-        //    g.FillRectangle(0xFFFFFFFF, c._x, c._y, c._size, c._size);
-            
-        //}
-
         private static void Clear(Cell c)
         {
             g.FillRectangle(0xFFFFFFFF, c._x, c._y, c._size, c._size);
-            
+
         }
     }
 }

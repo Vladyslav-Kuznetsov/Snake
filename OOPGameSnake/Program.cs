@@ -18,46 +18,60 @@ namespace OOPGameSnake
             Console.CursorVisible = false;
             Console.Clear();
 
-            PlayingField a = new PlayingField(_sizeField, _sizeCell);
-            FruitCreator f = new FruitCreator(_sizeField, _sizeCell);
-            Cell tail = new Cell(_sizeField / 2, _sizeField / 2, _sizeCell);
-            Snake snake = new Snake(tail, 5, _sizeField);
-            Cell fruit = f.CreateFruit(snake);
-            
-            
-            
-            
-            Canvas c = new Canvas(0xFFFFFFFF, 800, 800);
-            snake.DrawSnake();
-            
-            a.DrawField(g);
-            while (true)
-            {
-                a.DrawField(g);
-                snake.ВefineСlick();
-                fruit.Render1(g);
+            PlayingField field;
+            FruitCreator fruitCreator;
+            Cell tail;
+            Snake snake;
+            Cell fruit;
+            GameEngine game = new GameEngine();
+            Canvas c = new Canvas(0xFFFFFFFF, g.ClientWidth, g.ClientHeight);
 
-                if (snake.IsHitTail())
-                {
-                    break;
-                }
-                
-                if (snake.Eat(fruit))
-                {
-                    fruit.Clear(g);
-                    fruit = f.CreateFruit(snake);
-                    
-                }
-                else
-                {
-                    snake.Move();
-                }
-                
-                
-                snake.ВefineСlick();
-                fruit.Render1(g);
-                g.FlipPages();
-            }
+
+            do
+            {
+                field = new PlayingField(_sizeField, _sizeCell);
+                fruitCreator = new FruitCreator(_sizeField, _sizeCell);
+                tail = new Cell(_sizeField / 2, _sizeField / 2, _sizeCell);
+                snake = new Snake(tail, 3, _sizeField);
+                fruit = fruitCreator.CreateFruit(snake);
+
+                game.Start(field, snake, fruitCreator, fruit);
+
+            } while (game.Continue(c));
+
+
+
+
+            //Canvas c = new Canvas(0xFFFFFFFF, 800, 800);
+            //snake.DrawSnake();
+
+
+            //while (true)
+            //{
+            //    field.Draw(g);
+            //    snake.ВefineСlick();
+            //    fruit.Render1(g);
+
+            //    if (snake.IsHitTail())
+            //    {
+            //        break;
+            //    }
+
+            //    if (snake.Eat(fruit))
+            //    {
+            //        fruit.Clear(g);
+            //        fruit = fruitCreator.CreateFruit(snake);
+
+            //    }
+            //    else
+            //    {
+            //        snake.Move();
+            //    }
+
+
+
+            //    g.FlipPages();
+            //}
 
 
             Console.ReadLine();

@@ -32,7 +32,7 @@ namespace OOPGameSnake
             }
         }
 
-        public void DrawField(ConsoleGraphics graphics)
+        public void Draw(ConsoleGraphics graphics)
         {
             foreach(Cell c in _field)
             {

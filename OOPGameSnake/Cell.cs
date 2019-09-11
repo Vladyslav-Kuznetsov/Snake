@@ -72,16 +72,16 @@ namespace OOPGameSnake
             graphics.DrawRectangle(_color, _x, _y, _size, _size);
         }
 
-        public void Render1(ConsoleGraphics graphics)
+        public void Render(ConsoleGraphics graphics, uint color)
         {
-            graphics.FillRectangle(_color, _x, _y, _size, _size);
-            graphics.FlipPages();
+            graphics.FillRectangle(color, _x, _y, _size, _size);
+            
         }
 
         public void Clear(ConsoleGraphics graphics)
         {
             graphics.FillRectangle(0xFFFFFFFF, _x, _y, _size, _size);
-            //graphics.FlipPages();
+            
         }
     }
 }

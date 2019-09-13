@@ -5,82 +5,82 @@ namespace OOPGameSnake
 {
     public class Cell
     {
-        public int _x;
-        public int _y;
-        public int _size;
+        public int X;
+        public int Y;
+        public int Size;
         private const uint _color = 0xFF000000;
 
         public Cell(int x, int y, int size)
         {
-            _x = x;
-            _y = y;
-            _size = size;
+            X = x;
+            Y = y;
+            Size = size;
         }
 
         public Cell(Cell c)
         {
-            _x = c._x;
-            _y = c._y;
-            _size = c._size;
+            X = c.X;
+            Y = c.Y;
+            Size = c.Size;
         }
 
         public bool IsHit(Cell c)
         {
-            return c._x == _x && c._y == _y;
+            return c.X == X && c.Y == Y;
         }
 
         public void Move(int offset, Keys direction, int sizeField)
         {
             if (direction == Keys.RIGHT)
             {
-                _x += offset;
+                X += offset;
             }
             else if (direction == Keys.LEFT)
             {
-                _x -= offset;
+                X -= offset;
             }
             else if (direction == Keys.UP)
             {
-                _y -= offset;
+                Y -= offset;
             }
             else if (direction == Keys.DOWN)
             {
-                _y += offset;
+                Y += offset;
             }
 
-            if (_x + _size > sizeField)
+            if (X + Size > sizeField)
             {
-                _x = 0;
+                X = 0;
             }
-            else if (_x < 0)
+            else if (X < 0)
             {
-                _x = sizeField - _size;
+                X = sizeField - Size;
             }
 
-            if (_y + _size > sizeField)
+            if (Y + Size > sizeField)
             {
-                _y = 0;
+                Y = 0;
             }
-            else if (_y < 0)
+            else if (Y < 0)
             {
-                _y = sizeField - _size;
+                Y = sizeField - Size;
             }
         }
 
         public void Render(ConsoleGraphics graphics)
         {
-            graphics.DrawRectangle(_color, _x + 1, _y + 1, _size - 1, _size - 1);
+            graphics.DrawRectangle(_color, X + 1, Y + 1, Size - 1, Size - 1);
         }
 
         public void Render(ConsoleGraphics graphics, uint color)
         {
-            graphics.FillRectangle(color, _x + 1, _y + 1, _size - 1, _size - 1);
+            graphics.FillRectangle(color, X + 1, Y + 1, Size - 1, Size - 1);
 
         }
 
         public void Clear(ConsoleGraphics graphics)
         {
-            graphics.FillRectangle(0xFFFF0000, _x + 1, _y + 1, _size - 1, _size - 1);
+            graphics.FillRectangle(0xFFFF0000, X + 1, Y + 1, Size - 1, Size - 1);
         }
     }
 }

@@ -22,7 +22,7 @@ namespace OOPGameSnake
                 Cell c = new Cell(tail);
                 c.Move(offset, _direction, _sizeField);
                 _snake.Add(c);
-                offset += tail._size;
+                offset += tail.Size;
             }
         }
 
@@ -40,7 +40,7 @@ namespace OOPGameSnake
         {
             Cell head = _snake.Last();
             Cell nextCell = new Cell(head);
-            nextCell.Move(head._size, _direction, _sizeField);
+            nextCell.Move(head.Size, _direction, _sizeField);
 
             return nextCell;
         }
@@ -118,12 +118,12 @@ namespace OOPGameSnake
 
         private void Draw(Cell c)
         {
-            g.FillRectangle(0xFFFF0000, c._x + 1, c._y + 1, c._size - 1, c._size - 1);
+            g.FillRectangle(0xFFFF0000, c.X + 1, c.Y + 1, c.Size - 1, c.Size - 1);
         }
 
         private void Clear(Cell c)
         {
-            g.FillRectangle(0xFFFFFFFF, c._x + 1, c._y + 1, c._size - 1, c._size - 1);
+            g.FillRectangle(0xFFFFFFFF, c.X + 1, c.Y + 1, c.Size - 1, c.Size - 1);
 
         }
     }

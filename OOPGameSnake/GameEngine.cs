@@ -11,7 +11,7 @@ namespace OOPGameSnake
         private Canvas _canvas;
         private ConsoleGraphics _graphics;
         private uint _colorFruit = 0xFFFFFF00;
-        private int _speed = 25;
+        private int _speed;
 
         public GameEngine()
         {
@@ -21,7 +21,6 @@ namespace OOPGameSnake
 
         public void Start()
         {
-
             PlayingField field;
             FruitCreator fruitCreator;
             Cell tail;
@@ -33,6 +32,7 @@ namespace OOPGameSnake
             snake = new Snake(_graphics, tail, 3, _sizeField);
             fruit = fruitCreator.CreateFruit(snake);
             _canvas.Clear(_graphics);
+            _speed = 50;
 
             while (true)
             {
@@ -44,6 +44,7 @@ namespace OOPGameSnake
 
                 if (snake.IsHitTail())
                 {
+                    Console.Beep();
                     break;
                 }
 
@@ -54,7 +55,7 @@ namespace OOPGameSnake
 
                     if (_speed > 1 && Menu.Score % 5 == 0)
                     {
-                        _speed--;
+                        _speed-=2;
                     }
 
                     fruit.Clear(_graphics);
@@ -70,7 +71,5 @@ namespace OOPGameSnake
                 _graphics.FlipPages();
             }
         }
-
-
     }
 }

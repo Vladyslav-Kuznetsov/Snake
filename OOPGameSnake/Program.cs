@@ -10,7 +10,7 @@ namespace OOPGameSnake
 
         static void Main(string[] args)
         {
-            Console.ForegroundColor = ConsoleColor.Black;
+            
             Console.WindowHeight = 51;
             Console.WindowWidth = 120;
             Console.BackgroundColor = ConsoleColor.White;

@@ -32,7 +32,7 @@ namespace OOPGameSnake
 
                 for (int i = 0; i < s._snake.Count; i++)
                 {
-                    if (s._snake[i]._x == x && s._snake[i]._y == y)
+                    if (s._snake[i].X == x && s._snake[i].Y == y)
                     {
                         equally++;
                         break;

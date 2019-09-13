@@ -56,6 +56,7 @@
     <Compile Include="Cell.cs" />
     <Compile Include="FruitCreator.cs" />
     <Compile Include="GameEngine.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="PlayingField.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -63,6 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\snake-game.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

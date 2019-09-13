@@ -10,16 +10,12 @@ namespace OOPGameSnake
         private static int _sizeCell = 40;
         private Canvas _canvas;
         private ConsoleGraphics _graphics;
-        private int _score;
-        private int _bestScore;
         private uint _colorFruit = 0xFFFFFF00;
         private int _speed = 25;
 
         public GameEngine()
         {
             _graphics = new ConsoleGraphics();
-            _score = 0;
-            _bestScore = 0;
             _canvas = new Canvas(0xFFFFFFFF, _graphics.ClientWidth, _graphics.ClientHeight);
         }
 
@@ -43,8 +39,8 @@ namespace OOPGameSnake
                 field.Draw(_graphics);
                 snake.ВefineСlick();
                 fruit.Render(_graphics, _colorFruit);
-                _graphics.DrawString($"Score:{_score}", "ISOCPEUR", 0xFF000000, _sizeField + 10, 50);
-                _graphics.DrawString($"Best Score:{_bestScore}", "ISOCPEUR", 0xFF000000, _sizeField + 10, 70);
+                _graphics.DrawString($"Score:{Menu.Score}", "ISOCPEUR", 0xFF000000, 810, 50);
+                _graphics.DrawString($"Best Score:{Menu.BestScore}", "ISOCPEUR", 0xFF000000, 810, 70);
 
                 if (snake.IsHitTail())
                 {
@@ -54,9 +50,13 @@ namespace OOPGameSnake
                 if (snake.Eat(fruit))
                 {
                     _graphics.FillRectangle(0xFFFFFFFF, 810, 50, 100, 25);
-                    _score++;
-                    if (_speed > 1 && _score % 5 == 0)
+                    Menu.AddScore();
+
+                    if (_speed > 1 && Menu.Score % 5 == 0)
+                    {
                         _speed--;
+                    }
+
                     fruit.Clear(_graphics);
                     fruit = fruitCreator.CreateFruit(snake);
 
@@ -71,35 +71,6 @@ namespace OOPGameSnake
             }
         }
 
-        public bool ContinueGame()
-        {
-            if (_score > _bestScore)
-            {
-                _bestScore = _score;
-            }
 
-            _score = 0;
-            _speed = 25;
-
-            do
-            {
-                Console.WriteLine("Start a new game? (Yes/No)");
-                string command = Console.ReadLine();
-
-                if (command.ToLower() == "yes")
-                {
-                    Console.Clear();
-                    return true;
-                }
-                else if (command.ToLower() == "no")
-                {
-                    return false;
-                }
-                else
-                {
-                    Console.WriteLine("Incorrect data");
-                }
-            } while (true);
-        }
     }
 }

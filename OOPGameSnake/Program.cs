@@ -10,18 +10,24 @@ namespace OOPGameSnake
 
         static void Main(string[] args)
         {
-            Console.WindowHeight = 60;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WindowHeight = 51;
             Console.WindowWidth = 120;
             Console.BackgroundColor = ConsoleColor.White;
             Console.CursorVisible = false;
             Console.Clear();
             GameEngine game = new GameEngine();
+            Menu menu = new Menu();
+            menu.Greeting();
+            Console.ReadLine();
 
             do
             {
                 game.Start();
 
-            } while (game.ContinueGame());
+            } while (menu.ContinueGame());
+
+            
         }
     }
 }

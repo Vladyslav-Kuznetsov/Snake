@@ -32,7 +32,7 @@ namespace OOPGameSnake
             snake = new Snake(_graphics, tail, 3, _sizeField);
             fruit = fruitCreator.CreateFruit(snake);
             _canvas.Clear(_graphics);
-            _speed = 50;
+            _speed = 40;
 
             while (true)
             {

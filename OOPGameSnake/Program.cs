@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Threading;
-using DataStruct;
-using NConsoleGraphics;
 
 namespace OOPGameSnake
 {

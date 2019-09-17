@@ -1,6 +1,4 @@
-﻿using System;
-using NConsoleGraphics;
-using DataStruct;
+﻿using NConsoleGraphics;
 
 namespace OOPGameSnake
 {

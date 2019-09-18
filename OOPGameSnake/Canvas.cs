@@ -4,9 +4,9 @@ namespace OOPGameSnake
 {
     public class Canvas
     {
-        private uint _color;
-        private int _width;
-        private int _height;
+        private readonly uint _color;
+        private readonly int _width;
+        private readonly int _height;
 
         public Canvas(uint color, int width, int height)
         {

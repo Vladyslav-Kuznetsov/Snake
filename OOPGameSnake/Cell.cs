@@ -4,9 +4,9 @@ namespace OOPGameSnake
 {
     public class Cell
     {
-        public int X;
-        public int Y;
-        public int Size;
+        public int X { get; private set; }
+        public int Y { get; private set; }
+        public int Size { get; private set; }
         private const uint _color = 0xFF000000;
 
         public Cell(int x, int y, int size)

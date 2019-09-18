@@ -5,14 +5,12 @@ namespace OOPGameSnake
 {
     public class Snake
     {
-        private ConsoleGraphics g;
         public readonly List<Cell> _snake;
         private Keys _direction = Keys.UP;
-        private int _sizeField;
+        private readonly int _sizeField;
 
-        public Snake(ConsoleGraphics g, Cell tail, int length, int sizeField)
+        public Snake( Cell tail, int length, int sizeField)
         {
-            this.g = g;
             _snake = new List<Cell>();
             _sizeField = sizeField;
 
@@ -25,14 +23,14 @@ namespace OOPGameSnake
             }
         }
 
-        public void Move()
+        public void Move(ConsoleGraphics g)
         {
             Cell tail = _snake.First();
             _snake.Remove(tail);
             Cell head = GetNextCell();
             _snake.Add(head);
-            Clear(tail);
-            Draw(head);
+            Clear(tail, g);
+            Draw(head, g);
         }
 
         private Cell GetNextCell()
@@ -107,23 +105,15 @@ namespace OOPGameSnake
             }
 
         }
-        public void DrawSnake()
-        {
-            for (int i = 0; i < _snake.Count; i++)
-            {
-                Draw(_snake[i]);
-            }
-        }
 
-        private void Draw(Cell c)
+        private void Draw(Cell c, ConsoleGraphics g)
         {
             g.FillRectangle(0xFFFF0000, c.X + 1, c.Y + 1, c.Size - 1, c.Size - 1);
         }
 
-        private void Clear(Cell c)
+        private void Clear(Cell c, ConsoleGraphics g)
         {
             g.FillRectangle(0xFFFFFFFF, c.X + 1, c.Y + 1, c.Size - 1, c.Size - 1);
-
         }
     }
 }

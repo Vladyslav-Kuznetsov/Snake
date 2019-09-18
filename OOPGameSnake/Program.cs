@@ -14,15 +14,14 @@ namespace OOPGameSnake
             Console.CursorVisible = false;
             Console.Clear();
             GameEngine game = new GameEngine();
-            Menu menu = new Menu();
-            menu.Greeting();
+            Menu.Greeting();
             Console.ReadLine();
 
             do
             {
                 game.Start();
 
-            } while (menu.ContinueGame());
+            } while (Menu.ContinueGame());
 
             
         }

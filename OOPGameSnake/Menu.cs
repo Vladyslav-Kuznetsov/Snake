@@ -2,13 +2,13 @@
 
 namespace OOPGameSnake
 {
-    public class Menu
+    public static class Menu
     {
         private static ConsoleGraphics _graphics = new ConsoleGraphics();
         public static int Score { get; private set; }
         public static int BestScore { get; private set; }
 
-        public void Greeting()
+        public static void Greeting()
         {
             _graphics.DrawImagePart(_graphics.LoadImage("Images/snake-start.jpg"), 0, 0, _graphics.ClientWidth, _graphics.ClientHeight, 0, 0);
             _graphics.FlipPages();
@@ -19,7 +19,7 @@ namespace OOPGameSnake
             Score++;
         }
 
-        public bool ContinueGame()
+        public static bool ContinueGame()
         {
             if (Score > BestScore)
             {

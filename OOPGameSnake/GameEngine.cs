@@ -6,11 +6,11 @@ namespace OOPGameSnake
 {
     public class GameEngine
     {
-        private static int _sizeField = 800;
-        private static int _sizeCell = 40;
-        private Canvas _canvas;
-        private ConsoleGraphics _graphics;
-        private uint _colorFruit = 0xFFFFFF00;
+        private const int _sizeField = 800;
+        private const int _sizeCell = 40;
+        private readonly Canvas _canvas;
+        private readonly ConsoleGraphics _graphics;
+        private const uint _colorFruit = 0xFFFFFF00;
         private int _speed;
 
         public GameEngine()
@@ -21,16 +21,11 @@ namespace OOPGameSnake
 
         public void Start()
         {
-            PlayingField field;
-            FruitCreator fruitCreator;
-            Cell tail;
-            Snake snake;
-            Cell fruit;
-            field = new PlayingField(_sizeField, _sizeCell);
-            fruitCreator = new FruitCreator(_sizeField, _sizeCell);
-            tail = new Cell(_sizeField / 2, _sizeField / 2, _sizeCell);
-            snake = new Snake(_graphics, tail, 3, _sizeField);
-            fruit = fruitCreator.CreateFruit(snake);
+            PlayingField field = new PlayingField(_sizeField, _sizeCell);
+            FruitCreator fruitCreator = new FruitCreator(_sizeField, _sizeCell); ;
+            Cell tail = new Cell(_sizeField / 2, _sizeField / 2, _sizeCell);
+            Snake snake = new Snake( tail, 3, _sizeField);
+            Cell fruit = fruitCreator.CreateFruit(snake);
             _canvas.Clear(_graphics);
             _speed = 40;
 
@@ -55,7 +50,7 @@ namespace OOPGameSnake
 
                     if (_speed > 1 && Menu.Score % 5 == 0)
                     {
-                        _speed-=2;
+                        _speed -= 2;
                     }
 
                     fruit.Clear(_graphics);
@@ -64,7 +59,7 @@ namespace OOPGameSnake
                 }
                 else
                 {
-                    snake.Move();
+                    snake.Move(_graphics);
                     Thread.Sleep(_speed);
                 }
 

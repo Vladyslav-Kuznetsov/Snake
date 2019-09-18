@@ -4,9 +4,9 @@ namespace OOPGameSnake
 {
     public class PlayingField
     {
-        private Cell[,] _field;
-        private int _sizeCell;
-        public readonly int _sizeField;
+        private readonly Cell[,] _field;
+        private readonly int _sizeCell;
+        private readonly int _sizeField;
 
         public PlayingField(int sizeField, int sizeCell)
         {

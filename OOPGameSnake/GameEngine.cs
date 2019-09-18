@@ -13,9 +13,9 @@ namespace OOPGameSnake
         private const uint _colorFruit = 0xFFFFFF00;
         private int _speed;
 
-        public GameEngine()
+        public GameEngine(ConsoleGraphics graphics)
         {
-            _graphics = new ConsoleGraphics();
+            _graphics = graphics;
             _canvas = new Canvas(0xFFFFFFFF, _graphics.ClientWidth, _graphics.ClientHeight);
         }
 
@@ -24,13 +24,14 @@ namespace OOPGameSnake
             PlayingField field = new PlayingField(_sizeField, _sizeCell);
             FruitCreator fruitCreator = new FruitCreator(_sizeField, _sizeCell); ;
             Cell tail = new Cell(_sizeField / 2, _sizeField / 2, _sizeCell);
-            Snake snake = new Snake( tail, 3, _sizeField);
+            Snake snake = new Snake(tail, 3, _sizeField);
             Cell fruit = fruitCreator.CreateFruit(snake);
             _canvas.Clear(_graphics);
             _speed = 40;
 
             while (true)
             {
+                
                 field.Draw(_graphics);
                 snake.ВefineСlick();
                 fruit.Render(_graphics, _colorFruit);

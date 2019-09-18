@@ -9,7 +9,7 @@ namespace OOPGameSnake
         private Keys _direction = Keys.UP;
         private readonly int _sizeField;
 
-        public Snake( Cell tail, int length, int sizeField)
+        public Snake(Cell tail, int length, int sizeField)
         {
             _snake = new List<Cell>();
             _sizeField = sizeField;

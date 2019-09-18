@@ -1,4 +1,5 @@
 ﻿using System;
+using NConsoleGraphics;
 
 namespace OOPGameSnake
 {
@@ -7,23 +8,24 @@ namespace OOPGameSnake
 
         static void Main(string[] args)
         {
-            
+
             Console.WindowHeight = 51;
             Console.WindowWidth = 120;
             Console.BackgroundColor = ConsoleColor.White;
             Console.CursorVisible = false;
             Console.Clear();
-            GameEngine game = new GameEngine();
-            Menu.Greeting();
+            ConsoleGraphics graphics = new ConsoleGraphics();
+            GameEngine game = new GameEngine(graphics);
+            Menu.Greeting(graphics);
             Console.ReadLine();
 
             do
             {
                 game.Start();
 
-            } while (Menu.ContinueGame());
+            } while (Menu.ContinueGame(graphics));
 
-            
+
         }
     }
 }

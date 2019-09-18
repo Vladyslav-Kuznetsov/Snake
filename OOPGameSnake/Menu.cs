@@ -4,14 +4,13 @@ namespace OOPGameSnake
 {
     public static class Menu
     {
-        private static ConsoleGraphics _graphics = new ConsoleGraphics();
         public static int Score { get; private set; }
         public static int BestScore { get; private set; }
 
-        public static void Greeting()
+        public static void Greeting(ConsoleGraphics graphics)
         {
-            _graphics.DrawImagePart(_graphics.LoadImage("Images/snake-start.jpg"), 0, 0, _graphics.ClientWidth, _graphics.ClientHeight, 0, 0);
-            _graphics.FlipPages();
+            graphics.DrawImagePart(graphics.LoadImage("Images/snake-start.jpg"), 0, 0, graphics.ClientWidth, graphics.ClientHeight, 0, 0);
+            graphics.FlipPages();
         }
 
         public static void AddScore()
@@ -19,24 +18,24 @@ namespace OOPGameSnake
             Score++;
         }
 
-        public static bool ContinueGame()
+        public static bool ContinueGame(ConsoleGraphics graphics)
         {
             if (Score > BestScore)
             {
                 BestScore = Score;
             }
 
-            _graphics.DrawImagePart(_graphics.LoadImage("Images/snake-gameover.jpg"), 0, 0, _graphics.ClientWidth, _graphics.ClientHeight, 0, 0);
-            _graphics.DrawString($"Current score:{Score}", "ISOCPEUR", 0xFFFFFFFF, 320, 450, 36);
-            _graphics.DrawString($"Best score:{BestScore}", "ISOCPEUR", 0xFFFFFFFF, 350, 520, 36);
-            _graphics.FlipPages();
+            graphics.DrawImagePart(graphics.LoadImage("Images/snake-gameover.jpg"), 0, 0, graphics.ClientWidth, graphics.ClientHeight, 0, 0);
+            graphics.DrawString($"Current score:{Score}", "ISOCPEUR", 0xFFFFFFFF, 320, 450, 36);
+            graphics.DrawString($"Best score:{BestScore}", "ISOCPEUR", 0xFFFFFFFF, 350, 520, 36);
+            graphics.FlipPages();
             Score = 0;
 
             while (true)
             {
                 if (Input.IsKeyDown(Keys.SPACE))
                 {
-                    
+
                     return true;
                 }
                 else if (Input.IsKeyDown(Keys.ESCAPE))

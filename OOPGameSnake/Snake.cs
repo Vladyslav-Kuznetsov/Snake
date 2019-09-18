@@ -3,52 +3,51 @@ using NConsoleGraphics;
 
 namespace OOPGameSnake
 {
-    public class Snake
+    public class Snake : IDrawObject
     {
-        public readonly List<Cell> _snake;
+        private readonly List<Cell> _snake;
         private Keys _direction = Keys.UP;
-        private readonly int _sizeField;
 
-        public Snake(Cell tail, int length, int sizeField)
+        public Snake(int length)
         {
             _snake = new List<Cell>();
-            _sizeField = sizeField;
+            Cell tail = new Cell(Settings.SizeField / 2, Settings.SizeField / 2);
 
             for (int i = 0, offset = 0; i < length; i++)
             {
                 Cell c = new Cell(tail);
-                c.Move(offset, _direction, _sizeField);
+                c.Move(offset, _direction);
                 _snake.Add(c);
-                offset += tail.Size;
+                offset += Settings.SizeCell;
             }
         }
 
-        public void Move(ConsoleGraphics g)
+        public void Update(ConsoleGraphics graphics)
         {
             Cell tail = _snake.First();
             _snake.Remove(tail);
             Cell head = GetNextCell();
             _snake.Add(head);
-            Clear(tail, g);
-            Draw(head, g);
+            Draw(head, graphics);
+            Clear(tail, graphics);
         }
 
         private Cell GetNextCell()
         {
             Cell head = _snake.Last();
             Cell nextCell = new Cell(head);
-            nextCell.Move(head.Size, _direction, _sizeField);
+            nextCell.Move(Settings.SizeCell, _direction);
 
             return nextCell;
         }
 
-        public bool Eat(Cell fruit)
+        public bool Eat(Fruit fruit)
         {
             Cell head = GetNextCell();
 
             if (head.IsHit(fruit))
             {
-                _snake.Add(fruit);
+                _snake.Add(new Cell(fruit));
                 return true;
             }
             else
@@ -106,14 +105,35 @@ namespace OOPGameSnake
 
         }
 
-        private void Draw(Cell c, ConsoleGraphics g)
+        public void Draw(ConsoleGraphics graphics)
         {
-            g.FillRectangle(0xFFFF0000, c.X + 1, c.Y + 1, c.Size - 1, c.Size - 1);
+            foreach (var s in _snake)
+            {
+                Draw(s, graphics);
+            }
         }
 
-        private void Clear(Cell c, ConsoleGraphics g)
+        public  bool FruitInSnake(int x, int y)
         {
-            g.FillRectangle(0xFFFFFFFF, c.X + 1, c.Y + 1, c.Size - 1, c.Size - 1);
+            for (int i = 0; i < _snake.Count; i++)
+            {
+                if (_snake[i].X == x && _snake[i].Y == y)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private void Draw(Cell c, ConsoleGraphics graphics)
+        {
+            graphics.FillRectangle(Settings.SnakeColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
+        }
+
+        private void Clear(Cell c, ConsoleGraphics graphics)
+        {
+            graphics.FillRectangle(Settings.WhiteColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
         }
     }
 }

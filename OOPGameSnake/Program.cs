@@ -5,10 +5,8 @@ namespace OOPGameSnake
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-
             Console.WindowHeight = 51;
             Console.WindowWidth = 120;
             Console.BackgroundColor = ConsoleColor.White;
@@ -24,8 +22,6 @@ namespace OOPGameSnake
                 game.Start();
 
             } while (Menu.ContinueGame(graphics));
-
-
         }
     }
 }

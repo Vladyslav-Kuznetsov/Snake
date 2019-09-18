@@ -2,30 +2,27 @@
 
 namespace OOPGameSnake
 {
-    public class PlayingField
+    public class PlayingField : IDrawObject
     {
         private readonly Cell[,] _field;
-        private readonly int _sizeCell;
-        private readonly int _sizeField;
 
-        public PlayingField(int sizeField, int sizeCell)
+        public PlayingField()
         {
-            _sizeField = sizeField;
-            _sizeCell = sizeCell;
-            _field = new Cell[_sizeField / _sizeCell, _sizeField / _sizeCell];
+            
+            _field = new Cell[Settings.SizeField / Settings.SizeCell, Settings.SizeField / Settings.SizeCell];
             CreatePlayingField();
         }
 
         private void CreatePlayingField()
         {
-            for (int i = 0, x = 0; x < _sizeField; i++, x += _sizeCell)
+            for (int range = 0, coordinateX = 0; coordinateX < Settings.SizeField; range++, coordinateX += Settings.SizeCell)
             {
-                int y = 0;
+                int coordinateY = 0;
 
-                for (int j = 0; y < _sizeField; j++)
+                for (int index = 0; coordinateY < Settings.SizeField; index++)
                 {
-                    _field[i, j] = new Cell(x, y, _sizeCell);
-                    y += _sizeCell;
+                    _field[range, index] = new Cell(coordinateX, coordinateY);
+                    coordinateY += Settings.SizeCell;
                 }
             }
         }
@@ -34,7 +31,7 @@ namespace OOPGameSnake
         {
             foreach (Cell c in _field)
             {
-                c.Render(graphics);
+                c.Draw(graphics);
             }
         }
     }

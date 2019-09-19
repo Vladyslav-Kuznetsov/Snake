@@ -1,4 +1,5 @@
 ﻿using NConsoleGraphics;
+using System;
 
 namespace OOPGameSnake
 {
@@ -65,6 +66,38 @@ namespace OOPGameSnake
         public void Draw(ConsoleGraphics graphics)
         {
             graphics.DrawRectangle(Settings.BlackColor, X + 1, Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return this.Equals(obj as Cell);
+        }
+
+        public bool Equals(Cell cell)
+        {
+            if (Object.ReferenceEquals(cell, null))
+            {
+                return false;
+            }
+
+            if (Object.ReferenceEquals(this, cell))
+            {
+                return true;
+            }
+
+            if (this.GetType() != cell.GetType())
+            {
+                return false;
+            }
+
+            return (X == cell.X) && (Y == cell.Y);
+        }
+        public override int GetHashCode()
+        {
+            int hash = 11;
+            hash = (hash * 7) + X.GetHashCode();
+            hash = (hash * 7) + Y.GetHashCode();
+            return hash;
         }
     }
 }

@@ -12,5 +12,6 @@ namespace OOPGameSnake
         public const uint WhiteColor = 0xFFFFFFFF;
         public const string FontName = "ISOCPEUR";
         public const Keys DefaultSnakeDirection = Keys.UP;
+        public const int DefaultSnakeLength = 3;
     }
 }

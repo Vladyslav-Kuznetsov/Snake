@@ -1,7 +1,6 @@
 ﻿using NConsoleGraphics;
 using System;
 using System.Threading;
-using DataStruct;
 
 namespace OOPGameSnake
 {
@@ -9,7 +8,6 @@ namespace OOPGameSnake
     {
         private readonly ConsoleGraphics _graphics;
         private int _speed;
-        private const int _snakeLength = 3;
 
         public GameEngine(ConsoleGraphics graphics)
         {
@@ -19,7 +17,7 @@ namespace OOPGameSnake
         public void Start()
         {
             PlayingField field = new PlayingField();
-            Snake snake = new Snake(_snakeLength);
+            Snake snake = new Snake(Settings.DefaultSnakeLength);
             Fruit fruit = new Fruit(snake);
             _speed = 40;
             

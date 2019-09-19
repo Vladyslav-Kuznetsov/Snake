@@ -50,19 +50,17 @@ namespace OOPGameSnake
                 _snake.Add(new Cell(fruit));
                 return true;
             }
-            else
-            {
-                return false;
-            }
+
+            return false;
         }
 
         public bool IsHitTail()
         {
             Cell head = GetNextCell();
 
-            for (int i = 0; i < _snake.Count; i++)
+            foreach (Cell c in _snake)
             {
-                if (head.IsHit(_snake[i]))
+                if(head.IsHit(c))
                 {
                     return true;
                 }
@@ -70,40 +68,6 @@ namespace OOPGameSnake
 
             return false;
         }
-
-        //public void ClickHandler()
-        //{
-        //    switch (_direction)
-        //    {
-        //        case Keys.LEFT:
-        //        case Keys.RIGHT:
-
-        //            if (Input.IsKeyDown(Keys.DOWN))
-        //            {
-        //                _direction = Keys.DOWN;
-        //            }
-        //            else if (Input.IsKeyDown(Keys.UP))
-        //            {
-        //                _direction = Keys.UP;
-        //            }
-        //            break;
-
-        //        case Keys.UP:
-        //        case Keys.DOWN:
-
-        //            if (Input.IsKeyDown(Keys.LEFT))
-        //            {
-        //                _direction = Keys.LEFT;
-        //            }
-        //            else if (Input.IsKeyDown(Keys.RIGHT))
-        //            {
-        //                _direction = Keys.RIGHT;
-        //            }
-
-        //            break;
-        //    }
-
-        //}
 
         public void Draw(ConsoleGraphics graphics)
         {
@@ -115,15 +79,7 @@ namespace OOPGameSnake
 
         public bool FruitInSnake(int x, int y)
         {
-            for (int i = 0; i < _snake.Count; i++)
-            {
-                if (_snake[i].X == x && _snake[i].Y == y)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return _snake.Contains(new Cell(x, y));
         }
 
         private void Draw(Cell c, ConsoleGraphics graphics)

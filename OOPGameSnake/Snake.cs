@@ -113,7 +113,7 @@ namespace OOPGameSnake
             }
         }
 
-        public  bool FruitInSnake(int x, int y)
+        public bool FruitInSnake(int x, int y)
         {
             for (int i = 0; i < _snake.Count; i++)
             {

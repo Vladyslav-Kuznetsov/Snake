@@ -7,7 +7,6 @@ namespace OOPGameSnake
 {
     public class GameEngine
     {
-        private readonly Canvas _canvas;
         private readonly ConsoleGraphics _graphics;
         private int _speed;
         private const int _snakeLength = 3;
@@ -15,7 +14,6 @@ namespace OOPGameSnake
         public GameEngine(ConsoleGraphics graphics)
         {
             _graphics = graphics;
-            _canvas = new Canvas(Settings.WhiteColor, _graphics.ClientWidth, _graphics.ClientHeight);
         }
 
         public void Start()
@@ -27,7 +25,7 @@ namespace OOPGameSnake
             
             while (true)
             {
-                _canvas.Clear(_graphics);
+                _graphics.FillRectangle(Settings.WhiteColor, 0, 0, _graphics.ClientWidth, _graphics.ClientHeight);
                 snake.ВefineСlick();
                 snake.Draw(_graphics);
                 field.Draw(_graphics);

@@ -8,13 +8,8 @@ namespace OOPGameSnake
 
         public PlayingField()
         {
-            
             _field = new Cell[Settings.SizeField / Settings.SizeCell, Settings.SizeField / Settings.SizeCell];
-            CreatePlayingField();
-        }
 
-        private void CreatePlayingField()
-        {
             for (int range = 0, coordinateX = 0; coordinateX < Settings.SizeField; range++, coordinateX += Settings.SizeCell)
             {
                 int coordinateY = 0;

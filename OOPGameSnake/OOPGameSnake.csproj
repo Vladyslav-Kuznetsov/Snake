@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Canvas.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Fruit.cs" />
     <Compile Include="GameEngine.cs" />

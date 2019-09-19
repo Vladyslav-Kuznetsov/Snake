@@ -22,7 +22,7 @@ namespace OOPGameSnake
         {
             PlayingField field = new PlayingField();
             Snake snake = new Snake(_snakeLength);
-            Fruit fruit = FruitCreator.CreateFruit(snake);
+            Fruit fruit = new Fruit(snake);
             _speed = 40;
             
             while (true)
@@ -50,7 +50,7 @@ namespace OOPGameSnake
                     }
 
                     fruit.Clear(_graphics);
-                    fruit.Update(FruitCreator.CreateFruit(snake));
+                    fruit = new Fruit(snake);
 
                 }
                 else

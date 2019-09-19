@@ -55,7 +55,6 @@
     <Compile Include="Canvas.cs" />
     <Compile Include="Cell.cs" />
     <Compile Include="Fruit.cs" />
-    <Compile Include="FruitCreator.cs" />
     <Compile Include="GameEngine.cs" />
     <Compile Include="ICoordinates.cs" />
     <Compile Include="IDrawObject.cs" />

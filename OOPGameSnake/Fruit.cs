@@ -1,4 +1,5 @@
 ﻿using NConsoleGraphics;
+using System;
 
 namespace OOPGameSnake
 {
@@ -10,6 +11,28 @@ namespace OOPGameSnake
 
         public Fruit(int x, int y)
         {
+            X = x;
+            Y = y;
+        }
+
+        public Fruit(Snake snake)
+        {
+            int x;
+            int y;
+            Random random = new Random();
+
+            do
+            {
+                x = random.Next(0, Settings.SizeField);
+                y = random.Next(0, Settings.SizeField);
+                int tempX = x % Settings.SizeCell;
+                x -= tempX;
+                int tempY = y % Settings.SizeCell;
+                y -= tempY;
+
+
+            } while (snake.FruitInSnake(x, y));
+
             X = x;
             Y = y;
         }

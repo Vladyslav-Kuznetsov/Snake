@@ -9,12 +9,6 @@ namespace OOPGameSnake
 
         public int Y { get; private set; }
 
-        public Fruit(int x, int y)
-        {
-            X = x;
-            Y = y;
-        }
-
         public Fruit(Snake snake)
         {
             int x;

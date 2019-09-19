@@ -20,6 +20,13 @@ namespace OOPGameSnake
             Y = obj.Y;
         }
 
+        public Cell(ICoordinates obj, Keys direction)
+        {
+            X = obj.X;
+            Y = obj.Y;
+            Move(Settings.SizeCell, direction);
+        }
+
         public bool IsHit(ICoordinates obj)
         {
             return obj.X == X && obj.Y == Y;

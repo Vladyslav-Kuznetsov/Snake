@@ -1,4 +1,5 @@
 ﻿using NConsoleGraphics;
+using System;
 
 namespace OOPGameSnake
 {
@@ -13,5 +14,14 @@ namespace OOPGameSnake
         public const string FontName = "ISOCPEUR";
         public const Keys DefaultSnakeDirection = Keys.UP;
         public const int DefaultSnakeLength = 3;
+
+        public static void SetupDefaultConsoleSettings()
+        {
+            Console.WindowHeight = 51;
+            Console.WindowWidth = 120;
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.CursorVisible = false;
+            Console.Clear();
+        }
     }
 }

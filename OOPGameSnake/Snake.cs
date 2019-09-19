@@ -6,19 +6,19 @@ namespace OOPGameSnake
     public class Snake : IDrawObject
     {
         private readonly List<Cell> _snake;
+        private const int CenterField = Settings.SizeField / 2;
         public Keys Direction { get; set; } = Settings.DefaultSnakeDirection;
 
         public Snake(int length)
         {
             _snake = new List<Cell>();
-            Cell tail = new Cell(Settings.SizeField / 2, Settings.SizeField / 2);
+            Cell tail = new Cell(CenterField, CenterField);
 
-            for (int i = 0, offset = 0; i < length; i++)
+            for (int i = 0; i < length; i++)
             {
-                Cell c = new Cell(tail);
-                c.Move(offset, Direction);
-                _snake.Add(c);
-                offset += Settings.SizeCell;
+                Cell nextCell = new Cell(tail, Direction);
+                _snake.Add(nextCell);
+                tail = nextCell;
             }
         }
 

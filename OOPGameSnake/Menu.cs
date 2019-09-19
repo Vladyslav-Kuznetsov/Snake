@@ -1,4 +1,5 @@
 ﻿using NConsoleGraphics;
+using System;
 
 namespace OOPGameSnake
 {
@@ -11,6 +12,7 @@ namespace OOPGameSnake
         {
             graphics.DrawImagePart(graphics.LoadImage("Images/snake-start.jpg"), 0, 0, graphics.ClientWidth, graphics.ClientHeight, 0, 0);
             graphics.FlipPages();
+            Console.ReadLine();
         }
 
         public static void AddScore()

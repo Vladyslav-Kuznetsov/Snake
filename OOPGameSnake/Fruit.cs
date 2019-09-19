@@ -40,11 +40,5 @@ namespace OOPGameSnake
         {
             graphics.FillRectangle(Settings.SnakeColor, X + 1, Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
         }
-
-        public void Update (Fruit fruit)
-        {
-            X = fruit.X;
-            Y = fruit.Y;
-        }
     }
 }

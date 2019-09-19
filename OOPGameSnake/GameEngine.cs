@@ -26,7 +26,7 @@ namespace OOPGameSnake
             while (true)
             {
                 _graphics.FillRectangle(Settings.WhiteColor, 0, 0, _graphics.ClientWidth, _graphics.ClientHeight);
-                snake.ВefineСlick();
+                HandleClick(snake);
                 snake.Draw(_graphics);
                 field.Draw(_graphics);
                 fruit.Draw(_graphics);
@@ -59,6 +59,40 @@ namespace OOPGameSnake
                 
                 _graphics.FlipPages();
             }
+        }
+
+        public void HandleClick(Snake snake)
+        {
+            switch (snake.Direction)
+            {
+                case Keys.LEFT:
+                case Keys.RIGHT:
+
+                    if (Input.IsKeyDown(Keys.DOWN))
+                    {
+                        snake.Direction = Keys.DOWN;
+                    }
+                    else if (Input.IsKeyDown(Keys.UP))
+                    {
+                        snake.Direction = Keys.UP;
+                    }
+                    break;
+
+                case Keys.UP:
+                case Keys.DOWN:
+
+                    if (Input.IsKeyDown(Keys.LEFT))
+                    {
+                        snake.Direction = Keys.LEFT;
+                    }
+                    else if (Input.IsKeyDown(Keys.RIGHT))
+                    {
+                        snake.Direction = Keys.RIGHT;
+                    }
+
+                    break;
+            }
+
         }
     }
 }

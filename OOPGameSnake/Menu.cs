@@ -41,13 +41,12 @@ namespace OOPGameSnake
             {
                 if (Input.IsKeyDown(Keys.SPACE))
                 {
-
                     return true;
                 }
-                else if (Input.IsKeyDown(Keys.ESCAPE))
+
+                if (Input.IsKeyDown(Keys.ESCAPE))
                 {
                     return false;
-
                 }
             }
         }

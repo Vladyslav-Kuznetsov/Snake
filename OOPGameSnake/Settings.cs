@@ -1,4 +1,4 @@
-﻿using System;
+﻿using NConsoleGraphics;
 
 namespace OOPGameSnake
 {
@@ -11,5 +11,6 @@ namespace OOPGameSnake
         public const uint BlackColor = 0xFF000000;
         public const uint WhiteColor = 0xFFFFFFFF;
         public const string FontName = "ISOCPEUR";
+        public const Keys DefaultSnakeDirection = Keys.UP;
     }
 }

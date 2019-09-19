@@ -6,7 +6,7 @@ namespace OOPGameSnake
     public class Snake : IDrawObject
     {
         private readonly List<Cell> _snake;
-        private Keys _direction = Keys.UP;
+        public Keys Direction { get; set; } = Settings.DefaultSnakeDirection;
 
         public Snake(int length)
         {
@@ -16,7 +16,7 @@ namespace OOPGameSnake
             for (int i = 0, offset = 0; i < length; i++)
             {
                 Cell c = new Cell(tail);
-                c.Move(offset, _direction);
+                c.Move(offset, Direction);
                 _snake.Add(c);
                 offset += Settings.SizeCell;
             }
@@ -36,7 +36,7 @@ namespace OOPGameSnake
         {
             Cell head = _snake.Last();
             Cell nextCell = new Cell(head);
-            nextCell.Move(Settings.SizeCell, _direction);
+            nextCell.Move(Settings.SizeCell, Direction);
 
             return nextCell;
         }
@@ -71,39 +71,39 @@ namespace OOPGameSnake
             return false;
         }
 
-        public void ВefineСlick()
-        {
-            switch (_direction)
-            {
-                case Keys.LEFT:
-                case Keys.RIGHT:
+        //public void ClickHandler()
+        //{
+        //    switch (_direction)
+        //    {
+        //        case Keys.LEFT:
+        //        case Keys.RIGHT:
 
-                    if (Input.IsKeyDown(Keys.DOWN))
-                    {
-                        _direction = Keys.DOWN;
-                    }
-                    else if (Input.IsKeyDown(Keys.UP))
-                    {
-                        _direction = Keys.UP;
-                    }
-                    break;
+        //            if (Input.IsKeyDown(Keys.DOWN))
+        //            {
+        //                _direction = Keys.DOWN;
+        //            }
+        //            else if (Input.IsKeyDown(Keys.UP))
+        //            {
+        //                _direction = Keys.UP;
+        //            }
+        //            break;
 
-                case Keys.UP:
-                case Keys.DOWN:
+        //        case Keys.UP:
+        //        case Keys.DOWN:
 
-                    if (Input.IsKeyDown(Keys.LEFT))
-                    {
-                        _direction = Keys.LEFT;
-                    }
-                    else if (Input.IsKeyDown(Keys.RIGHT))
-                    {
-                        _direction = Keys.RIGHT;
-                    }
+        //            if (Input.IsKeyDown(Keys.LEFT))
+        //            {
+        //                _direction = Keys.LEFT;
+        //            }
+        //            else if (Input.IsKeyDown(Keys.RIGHT))
+        //            {
+        //                _direction = Keys.RIGHT;
+        //            }
 
-                    break;
-            }
+        //            break;
+        //    }
 
-        }
+        //}
 
         public void Draw(ConsoleGraphics graphics)
         {

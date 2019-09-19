@@ -2,59 +2,58 @@
 using System;
 using System.Threading;
 
-namespace OOPGameSnake
+namespace OOPGameSnake.Engine
 {
     public class GameEngine
     {
         private readonly ConsoleGraphics _graphics;
-        private int _speed;
+        private PlayingField _field;
+        private Snake _snake;
+        private Fruit _fruit;
+        private Speed _speed;
+        
 
         public GameEngine(ConsoleGraphics graphics)
         {
             _graphics = graphics;
+            _field = new PlayingField();
+            _snake = new Snake(Settings.DefaultSnakeLength);
+            _fruit = new Fruit(_snake);
+            _speed = new Speed();
         }
 
         public void Start()
         {
-            PlayingField field = new PlayingField();
-            Snake snake = new Snake(Settings.DefaultSnakeLength);
-            Fruit fruit = new Fruit(snake);
-            _speed = 40;
-            
+            ResetGame();
+
             while (true)
             {
                 _graphics.FillRectangle(Settings.WhiteColor, 0, 0, _graphics.ClientWidth, _graphics.ClientHeight);
-                HandleClick(snake);
-                snake.Draw(_graphics);
-                field.Draw(_graphics);
-                fruit.Draw(_graphics);
+                HandleClick(_snake);
+                _snake.Draw(_graphics);
+                _field.Draw(_graphics);
+                _fruit.Draw(_graphics);
                 Menu.ShowScore(_graphics);
 
-                if (snake.IsHitTail())
+                if (_snake.IsHitTail())
                 {
                     Console.Beep();
                     break;
                 }
 
-                if (snake.Eat(fruit))
+                if (_snake.Eat(_fruit))
                 {
                     Menu.AddScore();
-
-                    if (_speed > 1 && Menu.Score % 5 == 0)
-                    {
-                        _speed -= 2;
-                    }
-
-                    fruit.Clear(_graphics);
-                    fruit = new Fruit(snake);
-
+                    _speed.IncreaseSpeed();
+                    _fruit.Clear(_graphics);
+                    _fruit = new Fruit(_snake);
                 }
                 else
                 {
-                    snake.Update(_graphics);
-                    Thread.Sleep(_speed);
+                    _snake.Update(_graphics);
                 }
-                
+
+                _speed.Apply();
                 _graphics.FlipPages();
             }
         }
@@ -91,6 +90,14 @@ namespace OOPGameSnake
                     break;
             }
 
+        }
+
+        private void ResetGame()
+        {
+            //_field = new PlayingField();
+            _snake = new Snake(Settings.DefaultSnakeLength);
+            _fruit = new Fruit(_snake);
+            _speed.Reset();
         }
     }
 }

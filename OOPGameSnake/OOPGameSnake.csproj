@@ -53,8 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cell.cs" />
+    <Compile Include="Engine\Speed.cs" />
     <Compile Include="Fruit.cs" />
-    <Compile Include="GameEngine.cs" />
+    <Compile Include="Engine\GameEngine.cs" />
     <Compile Include="ICoordinates.cs" />
     <Compile Include="IDrawObject.cs" />
     <Compile Include="Menu.cs" />

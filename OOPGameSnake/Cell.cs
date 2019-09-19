@@ -72,7 +72,7 @@ namespace OOPGameSnake
 
         public void Draw(ConsoleGraphics graphics)
         {
-            graphics.DrawRectangle(Settings.BlackColor, X + 1, Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
+            graphics.DrawRectangle(Settings.BlackColor, X, Y, Settings.SizeCell, Settings.SizeCell);
         }
 
         public override bool Equals(object obj)

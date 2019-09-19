@@ -60,7 +60,7 @@ namespace OOPGameSnake
 
             foreach (Cell c in _snake)
             {
-                if(head.IsHit(c))
+                if (head.IsHit(c))
                 {
                     return true;
                 }
@@ -71,9 +71,9 @@ namespace OOPGameSnake
 
         public void Draw(ConsoleGraphics graphics)
         {
-            foreach (var s in _snake)
+            foreach (Cell c in _snake)
             {
-                Draw(s, graphics);
+                Draw(c, graphics);
             }
         }
 

@@ -14,7 +14,7 @@ namespace OOPGameSnake
         public const string FontName = "ISOCPEUR";
         public const Keys DefaultSnakeDirection = Keys.UP;
         public const int DefaultSnakeLength = 3;
-        public const int DefaultSpeed = 40;
+        public const int DefaultSpeed = 50;
 
         public static void SetupDefaultConsoleSettings()
         {

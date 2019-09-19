@@ -1,17 +1,15 @@
 ﻿using NConsoleGraphics;
 using System;
-using System.Threading;
 
 namespace OOPGameSnake.Engine
 {
     public class GameEngine
     {
         private readonly ConsoleGraphics _graphics;
-        private PlayingField _field;
+        private readonly PlayingField _field;
+        private readonly Speed _speed;
         private Snake _snake;
         private Fruit _fruit;
-        private Speed _speed;
-        
 
         public GameEngine(ConsoleGraphics graphics)
         {
@@ -28,7 +26,7 @@ namespace OOPGameSnake.Engine
 
             while (true)
             {
-                _graphics.FillRectangle(Settings.WhiteColor, 0, 0, _graphics.ClientWidth, _graphics.ClientHeight);
+                ClearScene();
                 HandleClick(_snake);
                 _snake.Draw(_graphics);
                 _field.Draw(_graphics);
@@ -94,10 +92,14 @@ namespace OOPGameSnake.Engine
 
         private void ResetGame()
         {
-            //_field = new PlayingField();
             _snake = new Snake(Settings.DefaultSnakeLength);
             _fruit = new Fruit(_snake);
             _speed.Reset();
+        }
+
+        private void ClearScene()
+        {
+            _graphics.FillRectangle(Settings.WhiteColor, 0, 0, _graphics.ClientWidth, _graphics.ClientHeight);
         }
     }
 }

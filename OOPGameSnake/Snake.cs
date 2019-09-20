@@ -24,15 +24,6 @@ namespace OOPGameSnake
             }
         }
 
-        private Cell GetNextCell()
-        {
-            Cell head = _snake.Last();
-            Cell nextCell = new Cell(head);
-            nextCell.Move(Settings.SizeCell, Direction);
-
-            return nextCell;
-        }
-
         public bool Eat(Fruit fruit)
         {
             Cell head = _snake.Last();
@@ -66,11 +57,6 @@ namespace OOPGameSnake
             return _snake.Contains(new Cell(x, y));
         }
 
-        private void Draw(Cell c, ConsoleGraphics graphics)
-        {
-            graphics.FillRectangle(Settings.SnakeColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
-        }
-
         public void Update(GameEngine engine)
         {
             if (IsHitTail())
@@ -89,7 +75,9 @@ namespace OOPGameSnake
 
             if (fruit != null && Eat(fruit))
             {
-                Menu.AddScore();
+                engine.IncreaseSpeed();
+                var scoreCounter = (ScoreCounter)engine.GetFirstObjectByType(typeof(ScoreCounter));
+                scoreCounter.IncreaseScore();
                 engine.DeleteObject(fruit);
                 fruit = new Fruit(this);
                 engine.AddObject(fruit);
@@ -102,6 +90,15 @@ namespace OOPGameSnake
             {
                 Draw(c, graphics);
             }
+        }
+
+        private Cell GetNextCell()
+        {
+            Cell head = _snake.Last();
+            Cell nextCell = new Cell(head);
+            nextCell.Move(Settings.SizeCell, Direction);
+
+            return nextCell;
         }
 
         private void UpdateDirection()
@@ -135,6 +132,11 @@ namespace OOPGameSnake
 
                     break;
             }
+        }
+
+        private void Draw(Cell c, ConsoleGraphics graphics)
+        {
+            graphics.FillRectangle(Settings.SnakeColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
         }
     }
 }

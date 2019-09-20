@@ -11,10 +11,20 @@ namespace OOPGameSnake.Engine
         private readonly List<IGameObject> _objects = new List<IGameObject>();
         private readonly List<IGameObject> _tempObjects = new List<IGameObject>();
         private bool _gameOver;
+        private int _speed;
 
         public GameEngine(ConsoleGraphics graphics)
         {
             _graphics = graphics;
+            _speed = Settings.DefaultSpeed;
+        }
+
+        public void IncreaseSpeed()
+        {
+            if (_speed > 1)
+            {
+                _speed--;
+            }
         }
 
         public void AddObject(IGameObject obj)
@@ -83,7 +93,7 @@ namespace OOPGameSnake.Engine
                 // double buffering technique is used
                 _graphics.FlipPages();
 
-                Thread.Sleep(Settings.DefaultSpeed);
+                Thread.Sleep(_speed);
             }
         }
 

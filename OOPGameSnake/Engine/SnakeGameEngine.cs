@@ -6,21 +6,26 @@ namespace OOPGameSnake.Engine
     {
         public SnakeGameEngine(ConsoleGraphics graphics) : base(graphics)
         {
-            InitObjects();
-        }
-
-        public override void Reset()
-        {
-            base.Reset();
-            InitObjects();
-        }
-
-        private void InitObjects()
-        {
             Snake snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
             AddObject(new PlayingField());
             AddObject(snake);
             AddObject(new Fruit(snake));
+            AddObject(new ScoreCounter());
+        }
+
+        public override void Reset()
+        {
+            ScoreCounter scoreCounter = (ScoreCounter)GetFirstObjectByType(typeof(ScoreCounter));
+
+            base.Reset();
+
+            Snake snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
+            AddObject(new PlayingField());
+            AddObject(snake);
+            AddObject(new Fruit(snake));
+
+            scoreCounter.Reset();
+            AddObject(scoreCounter);
         }
     }
 }

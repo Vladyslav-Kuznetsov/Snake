@@ -9,14 +9,14 @@ namespace OOPGameSnake
         {
             Settings.SetupDefaultConsoleSettings();
             ConsoleGraphics graphics = new ConsoleGraphics();
-            SnakeGameEngine game = new SnakeGameEngine(graphics);
+            GameEngine game = new SnakeGameEngine(graphics);
             Menu.Greeting(graphics);
 
             do
             {
                 game.Start();
 
-            } while (Menu.ContinueGame(graphics));
+            } while (Menu.ContinueGame(graphics, game));
         }
     }
 }

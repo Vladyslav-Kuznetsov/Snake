@@ -13,7 +13,7 @@ namespace OOPGameSnake.Engine
         private bool _gameOver;
         private int _speed;
 
-        public GameEngine(ConsoleGraphics graphics)
+        protected GameEngine(ConsoleGraphics graphics)
         {
             _graphics = graphics;
             _speed = Settings.DefaultSpeed;
@@ -62,7 +62,8 @@ namespace OOPGameSnake.Engine
                     return (T)obj;
                 }
             }
-            return default(T);
+
+            return default;
         }
 
         public void Start()
@@ -77,7 +78,6 @@ namespace OOPGameSnake.Engine
                     obj.Update(this);
                 }
 
-
                 _objects.AddRange(_tempObjects);
                 _tempObjects.Clear();
 
@@ -88,7 +88,6 @@ namespace OOPGameSnake.Engine
                 {
                     obj.Render(_graphics);
                 }
-
 
                 // double buffering technique is used
                 _graphics.FlipPages();

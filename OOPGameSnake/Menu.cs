@@ -12,6 +12,7 @@ namespace OOPGameSnake
             graphics.FlipPages();
             Console.ReadLine();
         }
+
         public static bool ContinueGame(ConsoleGraphics graphics, GameEngine engine)
         {
             var scoreCounter = engine.GetFirstObjectByType<ScoreCounter>();
@@ -20,7 +21,6 @@ namespace OOPGameSnake
             graphics.DrawString($"Current score:{scoreCounter.Score}", Settings.FontName, Settings.WhiteColor, 320, 450, 36);
             graphics.DrawString($"Best score:{scoreCounter.BestScore}", Settings.FontName, Settings.WhiteColor, 350, 520, 36);
             graphics.FlipPages();
-            
 
             while (true)
             {

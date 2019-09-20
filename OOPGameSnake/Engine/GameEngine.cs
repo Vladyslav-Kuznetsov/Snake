@@ -51,8 +51,8 @@ namespace OOPGameSnake.Engine
                     _snake.Update(_graphics);
                 }
 
-                _speed.Apply();
                 _graphics.FlipPages();
+                _speed.Apply();
             }
         }
 

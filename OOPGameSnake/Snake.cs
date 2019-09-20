@@ -1,9 +1,10 @@
 ﻿using DataStruct;
 using NConsoleGraphics;
+using OOPGameSnake.Engine;
 
 namespace OOPGameSnake
 {
-    public class Snake : IDrawObject
+    public class Snake : IGameObject
     {
         private readonly List<Cell> _snake;
         private const int CenterField = Settings.SizeField / 2;
@@ -90,6 +91,16 @@ namespace OOPGameSnake
         private void Clear(Cell c, ConsoleGraphics graphics)
         {
             graphics.FillRectangle(Settings.WhiteColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
+        }
+
+        public void Update(GameEngine gameEngine)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void Render(ConsoleGraphics graphics)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

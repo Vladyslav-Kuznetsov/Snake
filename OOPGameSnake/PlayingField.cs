@@ -2,7 +2,7 @@
 
 namespace OOPGameSnake
 {
-    public class PlayingField : IDrawObject
+    public class PlayingField 
     {
         private readonly Cell[,] _field;
 

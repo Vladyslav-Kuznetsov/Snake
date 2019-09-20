@@ -3,7 +3,7 @@ using System;
 
 namespace OOPGameSnake
 {
-    public class Fruit : ICoordinates, IDrawObject
+    public class Fruit : ICoordinates
     {
         public int X { get; private set; }
 

@@ -9,7 +9,7 @@ namespace OOPGameSnake
         {
             Settings.SetupDefaultConsoleSettings();
             ConsoleGraphics graphics = new ConsoleGraphics();
-            GameEngine game = new GameEngine(graphics);
+            GameEngine game = new SnakeGameEngine(graphics);
             Menu.Greeting(graphics);
 
             do

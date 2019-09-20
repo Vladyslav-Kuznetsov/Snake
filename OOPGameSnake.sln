@@ -5,8 +5,6 @@ VisualStudioVersion = 16.0.29025.244
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPGameSnake", "OOPGameSnake\OOPGameSnake.csproj", "{45ED2524-6845-41E7-AA65-2C0EF662C5EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OOPGameSnake.Tests", "OOPGameSnake.Tests\OOPGameSnake.Tests.csproj", "{EA8A92AC-80DA-442E-8CA8-AFC9A5898DB5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{45ED2524-6845-41E7-AA65-2C0EF662C5EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{45ED2524-6845-41E7-AA65-2C0EF662C5EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{45ED2524-6845-41E7-AA65-2C0EF662C5EA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA8A92AC-80DA-442E-8CA8-AFC9A5898DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EA8A92AC-80DA-442E-8CA8-AFC9A5898DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EA8A92AC-80DA-442E-8CA8-AFC9A5898DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EA8A92AC-80DA-442E-8CA8-AFC9A5898DB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

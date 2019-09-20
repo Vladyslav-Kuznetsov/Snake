@@ -14,7 +14,7 @@ namespace OOPGameSnake
         }
         public static bool ContinueGame(ConsoleGraphics graphics, GameEngine engine)
         {
-            var scoreCounter = (ScoreCounter)engine.GetFirstObjectByType(typeof(ScoreCounter));
+            var scoreCounter = engine.GetFirstObjectByType<ScoreCounter>();
 
             graphics.DrawImagePart(graphics.LoadImage("Images/snake-gameover.jpg"), 0, 0, graphics.ClientWidth, graphics.ClientHeight, 0, 0);
             graphics.DrawString($"Current score:{scoreCounter.Score}", Settings.FontName, Settings.WhiteColor, 320, 450, 36);

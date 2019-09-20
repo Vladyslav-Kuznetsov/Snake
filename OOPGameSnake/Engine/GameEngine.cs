@@ -45,24 +45,24 @@ namespace OOPGameSnake.Engine
             }
         }
 
-        public IGameObject GetFirstObjectByType(Type type)
+        public T GetFirstObjectByType<T>() where T : IGameObject
         {
             foreach (IGameObject obj in _tempObjects)
             {
-                if (obj.GetType() == type)
+                if (obj.GetType() == typeof(T))
                 {
-                    return obj;
+                    return (T)obj;
                 }
             }
 
             foreach (IGameObject obj in _objects)
             {
-                if (obj.GetType() == type)
+                if (obj.GetType() == typeof(T))
                 {
-                    return obj;
+                    return (T)obj;
                 }
             }
-            return null;
+            return default(T);
         }
 
         public void Start()

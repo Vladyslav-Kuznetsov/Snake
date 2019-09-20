@@ -6,8 +6,8 @@ namespace OOPGameSnake.Engine
     {
         public SnakeGameEngine(ConsoleGraphics graphics) : base(graphics)
         {
-            Snake snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
             AddObject(new PlayingField());
+            var snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
             AddObject(snake);
             AddObject(new Fruit(snake));
             AddObject(new ScoreCounter());
@@ -15,12 +15,12 @@ namespace OOPGameSnake.Engine
 
         public override void Reset()
         {
-            ScoreCounter scoreCounter = (ScoreCounter)GetFirstObjectByType(typeof(ScoreCounter));
+            var scoreCounter = GetFirstObjectByType<ScoreCounter>();
 
             base.Reset();
 
-            Snake snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
             AddObject(new PlayingField());
+            var snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
             AddObject(snake);
             AddObject(new Fruit(snake));
 

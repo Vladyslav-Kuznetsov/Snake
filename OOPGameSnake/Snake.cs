@@ -71,12 +71,12 @@ namespace OOPGameSnake
             Cell head = GetNextCell();
             _snake.Add(head);
 
-            var fruit = (Fruit)engine.GetFirstObjectByType(typeof(Fruit));
+            var fruit = engine.GetFirstObjectByType<Fruit>();
 
             if (fruit != null && Eat(fruit))
             {
                 engine.IncreaseSpeed();
-                var scoreCounter = (ScoreCounter)engine.GetFirstObjectByType(typeof(ScoreCounter));
+                var scoreCounter = engine.GetFirstObjectByType<ScoreCounter>();
                 scoreCounter.IncreaseScore();
                 engine.DeleteObject(fruit);
                 fruit = new Fruit(this);

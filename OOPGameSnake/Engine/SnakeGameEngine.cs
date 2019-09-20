@@ -1,5 +1,4 @@
-﻿using System;
-using NConsoleGraphics;
+﻿using NConsoleGraphics;
 
 namespace OOPGameSnake.Engine
 {
@@ -7,7 +6,21 @@ namespace OOPGameSnake.Engine
     {
         public SnakeGameEngine(ConsoleGraphics graphics) : base(graphics)
         {
-            AddObject(new Snake(Settings.DefaultSnakeLength));
+            InitObjects();
+        }
+
+        public override void Reset()
+        {
+            base.Reset();
+            InitObjects();
+        }
+
+        private void InitObjects()
+        {
+            Snake snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
+            AddObject(new PlayingField());
+            AddObject(snake);
+            AddObject(new Fruit(snake));
         }
     }
 }

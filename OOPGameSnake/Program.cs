@@ -3,13 +3,13 @@ using OOPGameSnake.Engine;
 
 namespace OOPGameSnake
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Settings.SetupDefaultConsoleSettings();
             ConsoleGraphics graphics = new ConsoleGraphics();
-            GameEngine game = new SnakeGameEngine(graphics);
+            SnakeGameEngine game = new SnakeGameEngine(graphics);
             Menu.Greeting(graphics);
 
             do

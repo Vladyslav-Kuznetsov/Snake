@@ -76,8 +76,8 @@
     <Content Include="Images\snake-start.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Libraly\ConsoleGraphics.cs.dll" />
-    <Content Include="Libraly\DataStruct.dll" />
+    <Content Include="Library\ConsoleGraphics.cs.dll" />
+    <Content Include="Library\DataStruct.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,106 +7,10 @@ namespace OOPGameSnake.Engine
 {
     public abstract class GameEngine
     {
-        //private readonly ConsoleGraphics _graphics;
-        //private readonly PlayingField _field;
-        //private readonly Speed _speed;
-        //private Snake _snake;
-        //private Fruit _fruit;
-
-        //public GameEngine(ConsoleGraphics graphics)
-        //{
-        //    _graphics = graphics;
-        //    _field = new PlayingField();
-        //    _snake = new Snake(Settings.DefaultSnakeLength);
-        //    _fruit = new Fruit(_snake);
-        //    _speed = new Speed();
-        //}
-
-        //public void Start()
-        //{
-        //    ResetGame();
-
-        //    while (true)
-        //    {
-        //        ClearScene();
-        //        HandleClick(_snake);
-        //        _snake.Draw(_graphics);
-        //        _field.Draw(_graphics);
-        //        _fruit.Draw(_graphics);
-        //        Menu.ShowScore(_graphics);
-
-        //        if (_snake.IsHitTail())
-        //        {
-        //            Console.Beep();
-        //            break;
-        //        }
-
-        //        if (_snake.Eat(_fruit))
-        //        {
-        //            Menu.AddScore();
-        //            _speed.IncreaseSpeed();
-        //            _fruit.Clear(_graphics);
-        //            _fruit = new Fruit(_snake);
-        //        }
-        //        else
-        //        {
-        //            _snake.Update(_graphics);
-        //        }
-
-        //        _graphics.FlipPages();
-        //        _speed.Apply();
-        //    }
-        //}
-
-        //public void HandleClick(Snake snake)
-        //{
-        //    switch (snake.Direction)
-        //    {
-        //        case Keys.LEFT:
-        //        case Keys.RIGHT:
-
-        //            if (Input.IsKeyDown(Keys.DOWN))
-        //            {
-        //                snake.Direction = Keys.DOWN;
-        //            }
-        //            else if (Input.IsKeyDown(Keys.UP))
-        //            {
-        //                snake.Direction = Keys.UP;
-        //            }
-        //            break;
-
-        //        case Keys.UP:
-        //        case Keys.DOWN:
-
-        //            if (Input.IsKeyDown(Keys.LEFT))
-        //            {
-        //                snake.Direction = Keys.LEFT;
-        //            }
-        //            else if (Input.IsKeyDown(Keys.RIGHT))
-        //            {
-        //                snake.Direction = Keys.RIGHT;
-        //            }
-
-        //            break;
-        //    }
-
-        //}
-
-        //private void ResetGame()
-        //{
-        //    _snake = new Snake(Settings.DefaultSnakeLength);
-        //    _fruit = new Fruit(_snake);
-        //    _speed.Reset();
-        //}
-
-        //private void ClearScene()
-        //{
-        //    _graphics.FillRectangle(Settings.WhiteColor, 0, 0, _graphics.ClientWidth, _graphics.ClientHeight);
-        //}
-
         private readonly ConsoleGraphics _graphics;
-        private readonly List<IGameObject> objects = new List<IGameObject>();
-        private readonly List<IGameObject> tempObjects = new List<IGameObject>();
+        private readonly List<IGameObject> _objects = new List<IGameObject>();
+        private readonly List<IGameObject> _tempObjects = new List<IGameObject>();
+        private bool _gameOver;
 
         public GameEngine(ConsoleGraphics graphics)
         {
@@ -115,38 +19,85 @@ namespace OOPGameSnake.Engine
 
         public void AddObject(IGameObject obj)
         {
-            tempObjects.Add(obj);
+            _tempObjects.Add(obj);
+        }
+
+        public void DeleteObject(IGameObject obj)
+        {
+            if (_tempObjects.Contains(obj))
+            {
+                _tempObjects.Remove(obj);
+            }
+
+            if (_objects.Contains(obj))
+            {
+                _objects.Remove(obj);
+            }
+        }
+
+        public IGameObject GetFirstObjectByType(Type type)
+        {
+            foreach (IGameObject obj in _tempObjects)
+            {
+                if (obj.GetType() == type)
+                {
+                    return obj;
+                }
+            }
+
+            foreach (IGameObject obj in _objects)
+            {
+                if (obj.GetType() == type)
+                {
+                    return obj;
+                }
+            }
+            return null;
         }
 
         public void Start()
         {
+            Reset();
 
-            while (true)
+            while (!_gameOver)
             {
                 // Game Loop
-                foreach (var obj in objects)
+                foreach (var obj in _objects)
                 {
                     obj.Update(this);
                 }
-                    
 
-                objects.AddRange(tempObjects);
-                tempObjects.Clear();
+
+                _objects.AddRange(_tempObjects);
+                _tempObjects.Clear();
 
                 // clearing screen before painting new frame
-                _graphics.FillRectangle(0xFFFFFFFF, 0, 0, _graphics.ClientWidth, _graphics.ClientHeight);
+                _graphics.FillRectangle(Settings.WhiteColor, 0, 0, _graphics.ClientWidth, _graphics.ClientHeight);
 
-                foreach (var obj in objects)
+                foreach (var obj in _objects)
                 {
                     obj.Render(_graphics);
                 }
-                    
+
 
                 // double buffering technique is used
                 _graphics.FlipPages();
 
-                Thread.Sleep(25);
+                Thread.Sleep(Settings.DefaultSpeed);
             }
+        }
+
+        public void End()
+        {
+            Console.Beep();
+            _gameOver = true;
+        }
+
+        public virtual void Reset()
+        {
+            _tempObjects.Clear();
+            _objects.Clear();
+            _gameOver = false;
         }
     }
 }

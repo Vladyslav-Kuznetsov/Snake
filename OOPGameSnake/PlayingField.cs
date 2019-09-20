@@ -1,8 +1,9 @@
 ﻿using NConsoleGraphics;
+using OOPGameSnake.Engine;
 
 namespace OOPGameSnake
 {
-    public class PlayingField 
+    public class PlayingField : IGameObject
     {
         private readonly Cell[,] _field;
 
@@ -22,12 +23,17 @@ namespace OOPGameSnake
             }
         }
 
-        public void Draw(ConsoleGraphics graphics)
+        public void Render(ConsoleGraphics graphics)
         {
             foreach (Cell c in _field)
             {
                 c.Draw(graphics);
             }
+        }
+
+        public void Update(GameEngine gameEngine)
+        {
+            // Always static
         }
     }
 }

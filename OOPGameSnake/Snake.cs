@@ -8,11 +8,12 @@ namespace OOPGameSnake
     {
         private readonly List<Cell> _snake;
         private const int CenterField = Settings.SizeField / 2;
-        public Keys Direction { get; set; } = Settings.DefaultSnakeDirection;
+        public Keys Direction { get; private set; }
 
-        public Snake(int length)
+        public Snake(int length, Keys direction)
         {
             _snake = new List<Cell>();
+            Direction = direction;
             Cell tail = new Cell(CenterField, CenterField);
 
             for (int i = 0; i < length; i++)
@@ -21,16 +22,6 @@ namespace OOPGameSnake
                 _snake.Add(nextCell);
                 tail = nextCell;
             }
-        }
-
-        public void Update(ConsoleGraphics graphics)
-        {
-            Cell tail = _snake.First();
-            _snake.Remove(tail);
-            Cell head = GetNextCell();
-            _snake.Add(head);
-            Draw(head, graphics);
-            Clear(tail, graphics);
         }
 
         private Cell GetNextCell()
@@ -44,7 +35,7 @@ namespace OOPGameSnake
 
         public bool Eat(Fruit fruit)
         {
-            Cell head = GetNextCell();
+            Cell head = _snake.Last();
 
             if (head.IsHit(fruit))
             {
@@ -57,25 +48,17 @@ namespace OOPGameSnake
 
         public bool IsHitTail()
         {
-            Cell head = GetNextCell();
+            Cell head = _snake.Last();
 
-            foreach (Cell c in _snake)
+            for (int i = 0; i < _snake.Count - 2; i++)
             {
-                if (head.IsHit(c))
+                if (head.IsHit(_snake[i]))
                 {
                     return true;
                 }
             }
 
             return false;
-        }
-
-        public void Draw(ConsoleGraphics graphics)
-        {
-            foreach (Cell c in _snake)
-            {
-                Draw(c, graphics);
-            }
         }
 
         public bool FruitInSnake(int x, int y)
@@ -88,19 +71,70 @@ namespace OOPGameSnake
             graphics.FillRectangle(Settings.SnakeColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
         }
 
-        private void Clear(Cell c, ConsoleGraphics graphics)
+        public void Update(GameEngine engine)
         {
-            graphics.FillRectangle(Settings.WhiteColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
-        }
+            if (IsHitTail())
+            {
+                engine.End();
+                return;
+            }
 
-        public void Update(GameEngine gameEngine)
-        {
-            throw new System.NotImplementedException();
+            UpdateDirection();
+            Cell tail = _snake.First();
+            _snake.Remove(tail);
+            Cell head = GetNextCell();
+            _snake.Add(head);
+
+            var fruit = (Fruit)engine.GetFirstObjectByType(typeof(Fruit));
+
+            if (fruit != null && Eat(fruit))
+            {
+                Menu.AddScore();
+                engine.DeleteObject(fruit);
+                fruit = new Fruit(this);
+                engine.AddObject(fruit);
+            }
         }
 
         public void Render(ConsoleGraphics graphics)
         {
-            throw new System.NotImplementedException();
+            foreach (Cell c in _snake)
+            {
+                Draw(c, graphics);
+            }
+        }
+
+        private void UpdateDirection()
+        {
+            switch (Direction)
+            {
+                case Keys.LEFT:
+                case Keys.RIGHT:
+
+                    if (Input.IsKeyDown(Keys.DOWN))
+                    {
+                        Direction = Keys.DOWN;
+                    }
+                    else if (Input.IsKeyDown(Keys.UP))
+                    {
+                        Direction = Keys.UP;
+                    }
+                    break;
+
+                case Keys.UP:
+                case Keys.DOWN:
+
+                    if (Input.IsKeyDown(Keys.LEFT))
+                    {
+                        Direction = Keys.LEFT;
+                    }
+                    else if (Input.IsKeyDown(Keys.RIGHT))
+                    {
+                        Direction = Keys.RIGHT;
+                    }
+
+                    break;
+            }
         }
     }
 }

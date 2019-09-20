@@ -3,7 +3,7 @@ using System;
 
 namespace OOPGameSnake
 {
-    public static class Menu
+    public static class Menu 
     {
         public static int Score { get; private set; }
         public static int BestScore { get; private set; }

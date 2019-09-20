@@ -1,9 +1,10 @@
 ﻿using NConsoleGraphics;
+using OOPGameSnake.Engine;
 using System;
 
 namespace OOPGameSnake
 {
-    public class Fruit : ICoordinates
+    public class Fruit : IGameObject, ICoordinates
     {
         public int X { get; private set; }
 
@@ -31,14 +32,14 @@ namespace OOPGameSnake
             Y = y;
         }
 
-        public void Draw(ConsoleGraphics graphics)
+        public void Update(GameEngine gameEngine)
         {
-            graphics.FillRectangle(Settings.FruitColor, X + 1, Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
+            // Always static
         }
 
-        public void Clear(ConsoleGraphics graphics)
+        public void Render(ConsoleGraphics graphics)
         {
-            graphics.FillRectangle(Settings.SnakeColor, X + 1, Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
+            graphics.FillRectangle(Settings.FruitColor, X + 1, Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
         }
     }
 }

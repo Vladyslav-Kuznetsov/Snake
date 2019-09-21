@@ -34,45 +34,29 @@ namespace OOPGameSnake
 
         public void Move(int offset, Keys direction)
         {
-            if (direction == Keys.RIGHT)
+            switch (direction)
             {
-                X += offset;
+                case Keys.RIGHT:
+                    {
+                        X = (X + Settings.SizeCell >= Settings.FieldWightInPixel) ? X = 0 : X += offset;
+                        break;
+                    }
+                case Keys.LEFT:
+                    {
+                        X = (X <= 0) ? X = Settings.FieldWightInPixel - Settings.SizeCell : X -= offset;
+                        break;
+                    }
+                case Keys.UP:
+                    {
+                        Y = (Y <= 0) ? Y = Settings.FieldHeightInPixel - Settings.SizeCell : Y  -= offset;
+                        break;
+                    }
+                case Keys.DOWN:
+                    {
+                        Y = (Y + Settings.SizeCell >= Settings.FieldHeightInPixel) ? Y = 0 : Y += offset;
+                        break;
+                    }
             }
-            else if (direction == Keys.LEFT)
-            {
-                X -= offset;
-            }
-            else if (direction == Keys.UP)
-            {
-                Y -= offset;
-            }
-            else if (direction == Keys.DOWN)
-            {
-                Y += offset;
-            }
-
-            if (X + Settings.SizeCell > Settings.SizeField)
-            {
-                X = 0;
-            }
-            else if (X < 0)
-            {
-                X = Settings.SizeField - Settings.SizeCell;
-            }
-
-            if (Y + Settings.SizeCell > Settings.SizeField)
-            {
-                Y = 0;
-            }
-            else if (Y < 0)
-            {
-                Y = Settings.SizeField - Settings.SizeCell;
-            }
-        }
-
-        public void Draw(ConsoleGraphics graphics)
-        {
-            graphics.DrawRectangle(Settings.BlackColor, X, Y, Settings.SizeCell, Settings.SizeCell);
         }
 
         public override bool Equals(object obj)

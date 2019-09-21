@@ -6,7 +6,7 @@ namespace OOPGameSnake.Engine
     {
         public SnakeGameEngine(ConsoleGraphics graphics) : base(graphics)
         {
-            AddObject(new PlayingField());
+            AddObject(new PlayingField(Settings.FieldHeightInCell,Settings.FieldWightInCell));
             var snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
             AddObject(snake);
             AddObject(new Fruit(snake));
@@ -19,7 +19,7 @@ namespace OOPGameSnake.Engine
 
             base.Reset();
 
-            AddObject(new PlayingField());
+            AddObject(new PlayingField(Settings.FieldHeightInCell, Settings.FieldWightInCell));
             var snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
             AddObject(snake);
             AddObject(new Fruit(snake));

@@ -5,7 +5,10 @@ namespace OOPGameSnake
 {
     public struct Settings
     {
-        public const int SizeField = 800;
+        public const int FieldHeightInPixel = SizeCell * FieldHeightInCell;
+        public const int FieldWightInPixel = SizeCell * FieldWightInCell;
+        public const int FieldWightInCell = 20;
+        public const int FieldHeightInCell = 20;
         public const int SizeCell = 40;
         public const uint SnakeColor = 0xFFFF0000;
         public const uint FruitColor = 0xFFFFFF00;

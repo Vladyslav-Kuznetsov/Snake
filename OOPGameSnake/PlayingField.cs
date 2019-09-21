@@ -7,18 +7,18 @@ namespace OOPGameSnake
     {
         private readonly Cell[,] _field;
 
-        public PlayingField()
+        public PlayingField(int height, int widht )
         {
-            _field = new Cell[Settings.SizeField / Settings.SizeCell, Settings.SizeField / Settings.SizeCell];
+            _field = new Cell[height, widht];
 
-            for (int range = 0, coordinateX = 0; coordinateX < Settings.SizeField; range++, coordinateX += Settings.SizeCell)
+            for (int range = 0, coordinateY = 0; range < height; range++, coordinateY += Settings.SizeCell)
             {
-                int coordinateY = 0;
+                int coordinateX = 0;
 
-                for (int index = 0; coordinateY < Settings.SizeField; index++)
+                for (int index = 0; index < widht; index++)
                 {
                     _field[range, index] = new Cell(coordinateX, coordinateY);
-                    coordinateY += Settings.SizeCell;
+                    coordinateX += Settings.SizeCell;
                 }
             }
         }
@@ -27,7 +27,7 @@ namespace OOPGameSnake
         {
             foreach (Cell c in _field)
             {
-                c.Draw(graphics);
+                graphics.DrawRectangle(Settings.BlackColor, c.X, c.Y, Settings.SizeCell, Settings.SizeCell);
             }
         }
 

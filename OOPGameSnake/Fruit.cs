@@ -18,8 +18,8 @@ namespace OOPGameSnake
 
             do
             {
-                x = random.Next(0, Settings.SizeField);
-                y = random.Next(0, Settings.SizeField);
+                x = random.Next(0, Settings.FieldWightInPixel);
+                y = random.Next(0, Settings.FieldHeightInPixel);
                 int tempX = x % Settings.SizeCell;
                 x -= tempX;
                 int tempY = y % Settings.SizeCell;

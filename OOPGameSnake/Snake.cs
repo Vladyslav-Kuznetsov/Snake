@@ -7,14 +7,15 @@ namespace OOPGameSnake
     public class Snake : IGameObject
     {
         private readonly List<Cell> _snake;
-        private const int CenterField = Settings.SizeField / 2;
+        private const int CenterFieldX = Settings.FieldWightInPixel / 2;
+        private const int CenterFieldY = Settings.FieldHeightInPixel / 2;
         public Keys Direction { get; private set; }
 
         public Snake(int length, Keys direction)
         {
             _snake = new List<Cell>();
             Direction = direction;
-            Cell tail = new Cell(CenterField, CenterField);
+            Cell tail = new Cell(CenterFieldX, CenterFieldY);
 
             for (int i = 0; i < length; i++)
             {
@@ -22,34 +23,6 @@ namespace OOPGameSnake
                 _snake.Add(nextCell);
                 tail = nextCell;
             }
-        }
-
-        public bool Eat(Fruit fruit)
-        {
-            Cell head = _snake.Last();
-
-            if (head.IsHit(fruit))
-            {
-                _snake.Add(new Cell(fruit));
-                return true;
-            }
-
-            return false;
-        }
-
-        public bool IsHitTail()
-        {
-            Cell head = _snake.Last();
-
-            for (int i = 0; i < _snake.Count - 2; i++)
-            {
-                if (head.IsHit(_snake[i]))
-                {
-                    return true;
-                }
-            }
-
-            return false;
         }
 
         public bool FruitInSnake(int x, int y)
@@ -88,7 +61,7 @@ namespace OOPGameSnake
         {
             foreach (Cell c in _snake)
             {
-                Draw(c, graphics);
+                graphics.FillRectangle(Settings.SnakeColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
             }
         }
 
@@ -99,6 +72,34 @@ namespace OOPGameSnake
             nextCell.Move(Settings.SizeCell, Direction);
 
             return nextCell;
+        }
+
+        private bool Eat(Fruit fruit)
+        {
+            Cell head = _snake.Last();
+
+            if (head.IsHit(fruit))
+            {
+                _snake.Add(new Cell(fruit));
+                return true;
+            }
+
+            return false;
+        }
+
+        private bool IsHitTail()
+        {
+            Cell head = _snake.Last();
+
+            for (int i = 0; i < _snake.Count - 2; i++)
+            {
+                if (head.IsHit(_snake[i]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         private void UpdateDirection()
@@ -132,11 +133,6 @@ namespace OOPGameSnake
 
                     break;
             }
-        }
-
-        private void Draw(Cell c, ConsoleGraphics graphics)
-        {
-            graphics.FillRectangle(Settings.SnakeColor, c.X + 1, c.Y + 1, Settings.SizeCell - 1, Settings.SizeCell - 1);
         }
     }
 }

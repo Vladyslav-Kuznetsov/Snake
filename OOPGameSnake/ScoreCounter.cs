@@ -10,8 +10,8 @@ namespace OOPGameSnake
 
         public void Render(ConsoleGraphics graphics)
         {
-            graphics.DrawString($"Score:{Score}", Settings.FontName, Settings.BlackColor, 810, 0);
-            graphics.DrawString($"Best Score:{BestScore}", Settings.FontName, Settings.BlackColor, 810, 20);
+            graphics.DrawString($"Score:{Score}", Settings.FontName, Settings.BlackColor, Settings.FieldWightInPixel + 10, 0);
+            graphics.DrawString($"Best Score:{BestScore}", Settings.FontName, Settings.BlackColor, Settings.FieldWightInPixel + 10, 20);
         }
 
         public void IncreaseScore()

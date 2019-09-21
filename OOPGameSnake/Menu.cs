@@ -4,7 +4,7 @@ using System;
 
 namespace OOPGameSnake
 {
-    public class Menu
+    public static class Menu
     {
         public static void Greeting(ConsoleGraphics graphics)
         {
@@ -24,7 +24,7 @@ namespace OOPGameSnake
 
             while (true)
             {
-                if (Input.IsKeyDown(Keys.RETURN))
+                if (Input.IsKeyDown(Keys.SPACE))
                 {
                     return true;
                 }

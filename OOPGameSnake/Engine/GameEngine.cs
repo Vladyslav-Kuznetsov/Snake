@@ -16,7 +16,6 @@ namespace OOPGameSnake.Engine
         protected GameEngine(ConsoleGraphics graphics)
         {
             _graphics = graphics;
-            _speed = Settings.DefaultSpeed;
         }
 
         public void IncreaseSpeed()
@@ -34,10 +33,10 @@ namespace OOPGameSnake.Engine
 
         public void DeleteObject(IGameObject obj)
         {
-            if (_tempObjects.Contains(obj))
-            {
-                _tempObjects.Remove(obj);
-            }
+            //if (_tempObjects.Contains(obj))
+            //{
+            //    _tempObjects.Remove(obj);
+            //}
 
             if (_objects.Contains(obj))
             {
@@ -107,6 +106,7 @@ namespace OOPGameSnake.Engine
             _tempObjects.Clear();
             _objects.Clear();
             _gameOver = false;
+            _speed = Settings.DefaultSpeed;
         }
     }
 }

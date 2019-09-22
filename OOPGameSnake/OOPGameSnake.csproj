@@ -52,7 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cell.cs" />
+    <Compile Include="SnakeSegment.cs" />
     <Compile Include="Engine\IGameObject.cs" />
     <Compile Include="Engine\SnakeGameEngine.cs" />
     <Compile Include="Fruit.cs" />

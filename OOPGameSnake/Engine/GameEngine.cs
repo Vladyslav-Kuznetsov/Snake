@@ -33,10 +33,10 @@ namespace OOPGameSnake.Engine
 
         public void DeleteObject(IGameObject obj)
         {
-            //if (_tempObjects.Contains(obj))
-            //{
-            //    _tempObjects.Remove(obj);
-            //}
+            if (_tempObjects.Contains(obj))
+            {
+                _tempObjects.Remove(obj);
+            }
 
             if (_objects.Contains(obj))
             {

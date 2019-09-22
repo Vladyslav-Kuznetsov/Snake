@@ -3,24 +3,24 @@ using System;
 
 namespace OOPGameSnake
 {
-    public class Cell : ICoordinates
+    public class SnakeSegment : ICoordinates
     {
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public Cell(int x, int y)
+        public SnakeSegment(int x, int y)
         {
             X = x;
             Y = y;
         }
 
-        public Cell(ICoordinates obj)
+        public SnakeSegment(ICoordinates obj)
         {
             X = obj.X;
             Y = obj.Y;
         }
 
-        public Cell(ICoordinates obj, Keys direction)
+        public SnakeSegment(ICoordinates obj, Keys direction)
         {
             X = obj.X;
             Y = obj.Y;
@@ -37,34 +37,29 @@ namespace OOPGameSnake
             switch (direction)
             {
                 case Keys.RIGHT:
-                    {
-                        X = (X + Settings.SizeCell >= Settings.FieldWightInPixel) ? X = 0 : X += offset;
-                        break;
-                    }
+                    X = (X + Settings.SizeCell >= Settings.FieldWightInPixel) ? X = 0 : X += offset;
+                    break;
+
                 case Keys.LEFT:
-                    {
-                        X = (X <= 0) ? X = Settings.FieldWightInPixel - Settings.SizeCell : X -= offset;
-                        break;
-                    }
+                    X = (X <= 0) ? X = Settings.FieldWightInPixel - Settings.SizeCell : X -= offset;
+                    break;
+
                 case Keys.UP:
-                    {
-                        Y = (Y <= 0) ? Y = Settings.FieldHeightInPixel - Settings.SizeCell : Y  -= offset;
-                        break;
-                    }
+                    Y = (Y <= 0) ? Y = Settings.FieldHeightInPixel - Settings.SizeCell : Y -= offset;
+                    break;
+
                 case Keys.DOWN:
-                    {
-                        Y = (Y + Settings.SizeCell >= Settings.FieldHeightInPixel) ? Y = 0 : Y += offset;
-                        break;
-                    }
+                    Y = (Y + Settings.SizeCell >= Settings.FieldHeightInPixel) ? Y = 0 : Y += offset;
+                    break;
             }
         }
 
         public override bool Equals(object obj)
         {
-            return this.Equals(obj as Cell);
+            return this.Equals(obj as SnakeSegment);
         }
 
-        public bool Equals(Cell cell)
+        public bool Equals(SnakeSegment cell)
         {
             if (Object.ReferenceEquals(cell, null))
             {

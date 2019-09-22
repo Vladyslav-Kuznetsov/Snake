@@ -4,9 +4,10 @@ namespace OOPGameSnake.Engine
 {
     public class SnakeGameEngine : GameEngine
     {
-        public SnakeGameEngine(ConsoleGraphics graphics) : base(graphics)
+        public SnakeGameEngine(ConsoleGraphics graphics)
+            : base(graphics)
         {
-            AddObject(new PlayingField(Settings.FieldHeightInCell,Settings.FieldWightInCell));
+            AddObject(new PlayingField(Settings.FieldHeightInCell, Settings.FieldWightInCell));
             var snake = new Snake(Settings.DefaultSnakeLength, Settings.DefaultSnakeDirection);
             AddObject(snake);
             AddObject(new Fruit(snake));

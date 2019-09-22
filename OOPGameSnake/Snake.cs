@@ -6,10 +6,9 @@ namespace OOPGameSnake
 {
     public class Snake : IGameObject
     {
-        private readonly List<SnakeSegment> _snake;
         private const int CenterFieldX = Settings.FieldWightInPixel / 2;
         private const int CenterFieldY = Settings.FieldHeightInPixel / 2;
-        public Keys Direction { get; private set; }
+        private readonly List<SnakeSegment> _snake;
 
         public Snake(int length, Keys direction)
         {
@@ -25,6 +24,8 @@ namespace OOPGameSnake
             }
         }
 
+        public Keys Direction { get; private set; }
+
         public bool FruitInSnake(int x, int y)
         {
             return _snake.Contains(new SnakeSegment(x, y));
@@ -39,21 +40,19 @@ namespace OOPGameSnake
             }
 
             UpdateDirection();
-            SnakeSegment tail = _snake.First();
-            _snake.Remove(tail);
-            SnakeSegment head = GetNextCell();
-            _snake.Add(head);
-
+            MoveBody();
             var fruit = engine.GetFirstObjectByType<Fruit>();
 
             if (fruit != null && Eat(fruit))
             {
-                engine.IncreaseSpeed();
                 var scoreCounter = engine.GetFirstObjectByType<ScoreCounter>();
                 scoreCounter.IncreaseScore();
+
                 engine.DeleteObject(fruit);
                 fruit = new Fruit(this);
                 engine.AddObject(fruit);
+
+                engine.IncreaseSpeed();
             }
         }
 
@@ -102,6 +101,14 @@ namespace OOPGameSnake
             return false;
         }
 
+        private void MoveBody()
+        {
+            SnakeSegment tail = _snake.First();
+            _snake.Remove(tail);
+            SnakeSegment head = GetNextCell();
+            _snake.Add(head);
+        }
+
         private void UpdateDirection()
         {
             switch (Direction)
@@ -117,6 +124,7 @@ namespace OOPGameSnake
                     {
                         Direction = Keys.UP;
                     }
+
                     break;
 
                 case Keys.UP:

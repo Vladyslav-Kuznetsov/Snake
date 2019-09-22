@@ -6,6 +6,7 @@ namespace OOPGameSnake
     public class ScoreCounter : IGameObject
     {
         public int Score { get; private set; }
+
         public int BestScore { get; private set; }
 
         public void Render(ConsoleGraphics graphics)

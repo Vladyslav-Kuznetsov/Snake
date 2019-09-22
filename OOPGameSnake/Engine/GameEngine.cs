@@ -1,7 +1,7 @@
-﻿using NConsoleGraphics;
-using DataStruct;
-using System.Threading;
+﻿using DataStruct;
+using NConsoleGraphics;
 using System;
+using System.Threading;
 
 namespace OOPGameSnake.Engine
 {
@@ -44,7 +44,8 @@ namespace OOPGameSnake.Engine
             }
         }
 
-        public T GetFirstObjectByType<T>() where T : IGameObject
+        public T GetFirstObjectByType<T>()
+            where T : IGameObject
         {
             foreach (IGameObject obj in _tempObjects)
             {

@@ -5,9 +5,6 @@ namespace OOPGameSnake
 {
     public class SnakeSegment : ICoordinates
     {
-        public int X { get; private set; }
-        public int Y { get; private set; }
-
         public SnakeSegment(int x, int y)
         {
             X = x;
@@ -26,6 +23,10 @@ namespace OOPGameSnake
             Y = obj.Y;
             Move(Settings.SizeCell, direction);
         }
+
+        public int X { get; private set; }
+
+        public int Y { get; private set; }
 
         public bool IsHit(ICoordinates obj)
         {
@@ -56,28 +57,29 @@ namespace OOPGameSnake
 
         public override bool Equals(object obj)
         {
-            return this.Equals(obj as SnakeSegment);
+            return Equals(obj as SnakeSegment);
         }
 
         public bool Equals(SnakeSegment cell)
         {
-            if (Object.ReferenceEquals(cell, null))
+            if (ReferenceEquals(cell, null))
             {
                 return false;
             }
 
-            if (Object.ReferenceEquals(this, cell))
+            if (ReferenceEquals(this, cell))
             {
                 return true;
             }
 
-            if (this.GetType() != cell.GetType())
+            if (GetType() != cell.GetType())
             {
                 return false;
             }
 
             return (X == cell.X) && (Y == cell.Y);
         }
+
         public override int GetHashCode()
         {
             int hash = 11;

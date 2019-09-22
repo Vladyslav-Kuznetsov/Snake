@@ -15,8 +15,8 @@ namespace OOPGameSnake
             do
             {
                 game.Start();
-
-            } while (Menu.ContinueGame(graphics, game));
+            }
+            while (Menu.ContinueGame(graphics, game));
         }
     }
 }

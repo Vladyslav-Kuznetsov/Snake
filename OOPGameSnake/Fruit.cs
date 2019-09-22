@@ -6,10 +6,6 @@ namespace OOPGameSnake
 {
     public class Fruit : IGameObject, ICoordinates
     {
-        public int X { get; }
-
-        public int Y { get; }
-
         public Fruit(Snake snake)
         {
             int x;
@@ -24,13 +20,16 @@ namespace OOPGameSnake
                 x -= tempX;
                 int tempY = y % Settings.SizeCell;
                 y -= tempY;
-
-
-            } while (snake.FruitInSnake(x, y));
+            }
+            while (snake.FruitInSnake(x, y));
 
             X = x;
             Y = y;
         }
+
+        public int X { get; }
+
+        public int Y { get; }
 
         public void Update(GameEngine gameEngine)
         {

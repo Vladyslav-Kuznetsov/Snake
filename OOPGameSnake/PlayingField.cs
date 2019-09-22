@@ -5,11 +5,11 @@ namespace OOPGameSnake
 {
     public class PlayingField : IGameObject
     {
-        private readonly Cell[,] _field;
+        private readonly (int x, int y)[,] _field;
 
-        public PlayingField(int height, int widht )
+        public PlayingField(int height, int widht)
         {
-            _field = new Cell[height, widht];
+            _field = new (int x, int y)[height, widht];
 
             for (int range = 0, coordinateY = 0; range < height; range++, coordinateY += Settings.SizeCell)
             {
@@ -17,7 +17,7 @@ namespace OOPGameSnake
 
                 for (int index = 0; index < widht; index++)
                 {
-                    _field[range, index] = new Cell(coordinateX, coordinateY);
+                    _field[range, index] = (x: coordinateX, y: coordinateY);
                     coordinateX += Settings.SizeCell;
                 }
             }
@@ -25,9 +25,9 @@ namespace OOPGameSnake
 
         public void Render(ConsoleGraphics graphics)
         {
-            foreach (Cell c in _field)
+            foreach ((int x, int y) c in _field)
             {
-                graphics.DrawRectangle(Settings.BlackColor, c.X, c.Y, Settings.SizeCell, Settings.SizeCell);
+                graphics.DrawRectangle(Settings.BlackColor, c.x, c.y, Settings.SizeCell, Settings.SizeCell);
             }
         }
 
